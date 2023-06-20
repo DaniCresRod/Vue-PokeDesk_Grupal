@@ -9,10 +9,16 @@
         <RouterLink to="/"><img id="logo" src="./../assets/images/logoPokemon.png" alt="Logo"></RouterLink>
       </section>
       <section id="randomPokemon">
+        <RouterView />
+      </section>
+      <section id="searchPokemon">
+
       </section>
     </header>
     <main>
-      <!-- <TheWelcome /> -->
+      <section id="pokemonCard">
+
+      </section>
     </main>
   </body>
 </template>
@@ -34,7 +40,6 @@
   }
 
   #randomPokemon {
-    background-color: bisque;
     width: 100vw;
     height: 50vh;
   }
@@ -43,5 +48,4 @@
     height: 20vh;
     margin: auto;
   }
-
 </style>
