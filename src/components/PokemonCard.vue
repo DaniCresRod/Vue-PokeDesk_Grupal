@@ -1,28 +1,27 @@
 <script setup>
-   import { ref } from "vue";
-   import  ConnectApi  from "./../services/ConnectApi"
+
 defineProps({            
-        
+        cardClass: {
+            type: String
+        },
+        url: {
+            type: String
+        }
     });
-    const pokemonData =  ref();
-    cardData.value = pokemonData
-    // let pokemonValue = pokemonData.value
-    pokemonData.value.then(x => console.log(x))
+    
 </script>
 
 
 <template>
     <div :class="cardClass">
-        <h3> {{ pokemonData.value.id }} </h3>
-        <h2> {{ pokemon.name }} </h2>
-        <img :src="imgUrl">
-        <p>{{ typeA }}</p>
-        <p>{{ typeB }}</p>
+        <h3> {{  }} </h3>
+        <h2> {{  }} </h2>
+        <img :src="imgUrl"> <!-- pokemon.sprites.other.official-artwork.front-default -->
+        <p>{{  }}</p>
+        <p>{{  }}</p>
     </div>
 
-    <div>
-        <button @click="pokemonData"></button>
-    </div>
+    
 </template>
 
 

@@ -8,7 +8,7 @@ import PokemonCard from './components/PokemonCard.vue';
 <template>
 
   <SearchView></SearchView>
-  <PokemonCard />
+  <PokemonCard cardClass="fire" imgUrl="src/assets/charmander.png"/>
   <!--<header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
