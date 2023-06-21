@@ -37,8 +37,8 @@ function Search(){
     <section id="searchBar">
         <h3>Look up your Pokemon name or number</h3>
         <form>
-            <input type="text" placeholder="Busca un pokemon!" autocomplete="on" size="40" @input="ChangeButton()">
-            <button type="button" autofocus @click="Search()">Find whatever!</button>
+            <input type="text" placeholder="Search a pokemon!" autocomplete="on" size="40" @input="ChangeButton()">
+            <button type="button" autofocus @click="Search()">Show me a random one!</button>
             <button type="reset">Delete</button>
         </form>
         
@@ -63,7 +63,7 @@ h3{
     font-weight: bold;
     margin-left: 2vw;
     font-size: x-large;
-
+    text-align: center;
 }
 
 form{
