@@ -1,27 +1,27 @@
 <script setup>
-import BuscarPokemon from "../services/ConectarApi"
+import pokemonSearch from "../services/ConnectApi"
 
 function ChangeButton(){
     
     if(document.querySelector("#searchBar input").value.length>0){
-        document.querySelector("#searchBar button:nth-of-type(1)").textContent="Buscalo!"        
+        document.querySelector("#searchBar button:nth-of-type(1)").textContent="Find It!"        
     }
     else{
-        document.querySelector("#searchBar button:nth-of-type(1)").textContent="A ver que encuentro!"
+        document.querySelector("#searchBar button:nth-of-type(1)").textContent="Find whatever!"
     }    
 }
 
-function Buscar(){
-    let valorBusqueda = document.querySelector("#searchBar input").value;
-    if(valorBusqueda.length==0){
-        valorBusqueda=Math.floor(Math.random()*1281)+1
-        if(valorBusqueda>1010){
-            valorBusqueda+=8990;
+function Search(){
+    let searchValue = document.querySelector("#searchBar input").value;
+    if(searchValue.length==0){
+        searchValue=Math.floor(Math.random()*1281)+1
+        if(searchValue>1010){
+            searchValue+=8990;
         }
-    }else if(isNaN(valorBusqueda))valorBusqueda=valorBusqueda.toLowerCase();
+    }else if(isNaN(searchValue))searchValue=searchValue.toLowerCase();
     
     //let respuesta = 
-    BuscarPokemon(valorBusqueda);
+    pokemonSearch(searchValue);
 
     //console.log(respuesta);
     document.querySelector("#searchBar input").value="";
@@ -35,11 +35,11 @@ function Buscar(){
 <template>
 
     <section id="searchBar">
-        <h3>Busca tu Pokemon por Nombre o Número</h3>
+        <h3>Look up your Pokemon name or number</h3>
         <form>
             <input type="text" placeholder="Busca un pokemon!" autocomplete="on" size="40" @input="ChangeButton()">
-            <button type="button" autofocus @click="Buscar()">A ver que encuentro!</button>
-            <button type="reset">Borrar</button>
+            <button type="button" autofocus @click="Search()">Find whatever!</button>
+            <button type="reset">Delete</button>
         </form>
         
     </section>
