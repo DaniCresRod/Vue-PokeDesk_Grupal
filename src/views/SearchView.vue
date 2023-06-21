@@ -1,34 +1,32 @@
 <script setup>
-import pokemonSearch from "../services/ConnectApi"
 
-function ChangeButton(){
-    
-    if(document.querySelector("#searchBar input").value.length>0){
-        document.querySelector("#searchBar button:nth-of-type(1)").textContent="Find It!"        
-    }
-    else{
-        document.querySelector("#searchBar button:nth-of-type(1)").textContent="Find whatever!"
-    }    
-}
+    import pokemonSearch from "../services/ConnectApi"
 
-function Search(){
-    let searchValue = document.querySelector("#searchBar input").value;
-    if(searchValue.length==0){
-        searchValue=Math.floor(Math.random()*1281)+1
-        if(searchValue>1010){
-            searchValue+=8990;
+    function ChangeButton(){
+        
+        if(document.querySelector("#searchBar input").value.length>0){
+            document.querySelector("#searchBar button:nth-of-type(1)").textContent="Find It!"        
         }
-    }else if(isNaN(searchValue))searchValue=searchValue.toLowerCase();
-    
-    //let respuesta = 
-    pokemonSearch(searchValue);
+        else{
+            document.querySelector("#searchBar button:nth-of-type(1)").textContent="Find whatever!"
+        }    
+    }
 
-    //console.log(respuesta);
-    document.querySelector("#searchBar input").value="";
-}
+    function Search(){
+        let searchValue = document.querySelector("#searchBar input").value;
+        if(searchValue.length==0){
+            searchValue=Math.floor(Math.random()*1281)+1
+            if(searchValue>1010){
+                searchValue+=8990;
+            }
+        }else if(isNaN(searchValue))searchValue=searchValue.toLowerCase();
+        
+        //let respuesta = 
+        pokemonSearch(searchValue);
 
-
-
+        //console.log(respuesta);
+        document.querySelector("#searchBar input").value="";
+    }
 
 </script>
 
@@ -41,7 +39,6 @@ function Search(){
             <button type="button" autofocus @click="Search()">Show me a random one!</button>
             <button type="reset">Delete</button>
         </form>
-        
     </section>
 
 </template>
@@ -106,6 +103,5 @@ button:hover{
     transform: scale(1.1);
 
 }
-
 
 </style>

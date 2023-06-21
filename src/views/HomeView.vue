@@ -1,35 +1,34 @@
 <script setup>
+// import { RouterLink, RouterView } from 'vue-router'
 import SearchView from './SearchView.vue';
-// import RandomView from './RandomView.vue';
+import RandomView from './RandomView.vue';
 // import CardView from './CardView.vue';
 </script>
 
 <template>
   <body>
-    <header>
+    <!-- <header>
       <section id="logoSection">
         <RouterLink to="/"><img id="logo" src="./../assets/logoPokemon.png" alt="Logo"></RouterLink>
-      </section>
-      <section id="randomPokemon">
-        <RandomView></RandomView>
         <RouterView />
+      </section>
+    </header> -->
+    <main>
+      <section id="randomPokemon">
+        <RandomView />
       </section>
       <section id="searchPokemon">
-        <SearchView></SearchView>
-        <RouterView />
+        <SearchView />
       </section>
-    </header>
-    <main>
       <section id="pokemonCard">
-        <CardView></CardView>
-        <RouterView />
+        <CardView />
       </section>
     </main>
   </body>
 </template>
 
 <style scoped>
-  body {
+  /* body {
     background-color: #061ba1;
     height: 100vh;
   }
@@ -44,15 +43,16 @@ import SearchView from './SearchView.vue';
     min-width: 100%;
     display: flex;
     justify-content: center;
-  }
+  } 
+  
+  #logo {
+    height: 20vh;
+    margin: auto;
+  } */
 
   #randomPokemon {
     width: 100vw;
     height: 50vh;
   }
 
-  #logo {
-    height: 20vh;
-    margin: auto;
-  }
 </style>
