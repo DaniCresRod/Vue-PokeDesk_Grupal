@@ -32,22 +32,22 @@ import PokemonCard from './components/PokemonCard.vue'
   body {
     background-color: #061ba1;
     height: fit-content;
+    width: fit-content;
   }
   
   header {
-    height: 20vh;
+    height: 18vh;
     width: 100vw;
     display: flex;
     justify-content: center;
   }
 
   #logo {
-    height: 15vh;
-    margin: auto;
+    height: 15vh;    
   }
 
   section {
-    padding: 5% 0; 
+    padding: 2% 0; 
   }
 
 </style>
