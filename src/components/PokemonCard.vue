@@ -1,57 +1,27 @@
 <script setup>
-    // import { pokeapi } from '@/services/pokeapi.js';
-    defineProps({
-        cardId: {
-            type: String
-        },
-        cardClass: {
-            type: String
-        },
-        cardName: {
-            type: String
-        },
-        imgUrl: {
-            type: String
-        },
-        typeA: {
-            type: String
-        },
-        typeB: {
-            type: String,
-            default: ""
-        },
-        // data(){
-        //    return {
-        //     pokemonData: {},
-        //     pokemonID: ''
-        //    } 
-        // },
-
-            
+   import { ref } from "vue";
+   import  ConnectApi  from "./../services/ConnectApi"
+defineProps({            
         
     });
-    // async function searchPokemon() {
-    //                 try {
-    //                     const pokemonToFind = await fetch(`${pokeapi}/${this.pokemonID}`);
-    //                     const pokemon = await pokemonToFind.json();
-    //                     this.pokemonData = pokemon;
-    //                     console.log(pokemon);
-    //                     return pokemon;
-    //                 } catch (error) {
-    //                     alert('Pokemon was not found')
-    //                 }
-    //             }
-    
+    const pokemonData =  ref();
+    cardData.value = pokemonData
+    // let pokemonValue = pokemonData.value
+    pokemonData.value.then(x => console.log(x))
 </script>
 
 
 <template>
     <div :class="cardClass">
-        <h3> {{ pokemonID }} </h3>
-        <h2>{{ pokemonName }}</h2>
+        <h3> {{ pokemonData.value.id }} </h3>
+        <h2> {{ pokemon.name }} </h2>
         <img :src="imgUrl">
         <p>{{ typeA }}</p>
         <p>{{ typeB }}</p>
+    </div>
+
+    <div>
+        <button @click="pokemonData"></button>
     </div>
 </template>
 
@@ -70,15 +40,75 @@
     }
     
     .fire{
-        background-color: red;
+        background-color: #f05030;
     }
 
     .water{
-        background-color: blue;
+        background-color: #3899f8;
     }
 
     .electric{
-        background: yellow;
+        background: #f8d030;
+    }
+
+    .steel {
+        background: #a8a8c0;
+    }
+
+    .bug {
+        background: #a8b820;
+    }
+
+    .dragon {
+        background: #7860e0; 
+    }
+
+    .ghost {
+        background: #6060b0;
+    }
+
+    .fairy {
+        background: #e79fe7;
+    }
+
+    .ice {
+        background: #58c8e0;
+    }
+
+    .fight {
+        background: #a05038;
+    }
+
+    .normal {
+        background: #a8a090;
+    }
+
+    .grass {
+        background: #78c850;
+    }
+
+    .psychic {
+        background: #f870a0;
+    }
+
+    .rock {
+        background: #b8a058;
+    }
+
+    .dark {
+        background: #7a5848;
+    }
+
+    .ground {
+        background: #e9d6a4;
+    }
+
+    .poison {
+        background: #b058a0;
+    }
+
+    .flying {
+        background: #98a8f0;
     }
 
     
