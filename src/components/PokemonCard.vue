@@ -1,25 +1,25 @@
 <script setup>
-    import { pokeapi } from '@/services/pokeapi.js';
+    // import { pokeapi } from '@/services/pokeapi.js';
     defineProps({
-        // cardId: {
-        //     type: String
-        // },
-        // cardClass: {
-        //     type: String
-        // },
-        // cardName: {
-        //     type: String
-        // },
+        cardId: {
+            type: String
+        },
+        cardClass: {
+            type: String
+        },
+        cardName: {
+            type: String
+        },
         imgUrl: {
             type: String
         },
-        // typeA: {
-        //     type: String
-        // },
-        // typeB: {
-        //     type: String,
-        //     default: ""
-        // },
+        typeA: {
+            type: String
+        },
+        typeB: {
+            type: String,
+            default: ""
+        },
         // data(){
         //    return {
         //     pokemonData: {},
@@ -30,17 +30,17 @@
             
         
     });
-    async function searchPokemon() {
-                    try {
-                        const pokemonToFind = await fetch(`${pokeapi}/${this.pokemonID}`);
-                        const pokemon = await pokemonToFind.json();
-                        this.pokemonData = pokemon;
-                        console.log(pokemon);
-                        return pokemon;
-                    } catch (error) {
-                        alert('Pokemon was not found')
-                    }
-                }
+    // async function searchPokemon() {
+    //                 try {
+    //                     const pokemonToFind = await fetch(`${pokeapi}/${this.pokemonID}`);
+    //                     const pokemon = await pokemonToFind.json();
+    //                     this.pokemonData = pokemon;
+    //                     console.log(pokemon);
+    //                     return pokemon;
+    //                 } catch (error) {
+    //                     alert('Pokemon was not found')
+    //                 }
+    //             }
     
 </script>
 
@@ -53,12 +53,6 @@
         <p>{{ typeA }}</p>
         <p>{{ typeB }}</p>
     </div>
-
-    <div>
-        <input type="text" v-model="pokemonID">
-        <button @click="searchPokemon()">Search Pokemon</button>
-    </div>
-
 </template>
 
 
@@ -75,7 +69,17 @@
         width: 250px;
     }
     
-    .fuego{
+    .fire{
         background-color: red;
     }
+
+    .water{
+        background-color: blue;
+    }
+
+    .electric{
+        background: yellow;
+    }
+
+    
 </style>
