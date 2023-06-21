@@ -36,7 +36,7 @@
         <h3>Look up your Pokemon name or number</h3>
         <form>
             <input type="text" placeholder="Search a pokemon!" autocomplete="on" size="40" @input="ChangeButton()">
-            <button type="button" autofocus @click="Search()">Show me a random one!</button>
+            <button type="button" autofocus @click="Search()">Find whatever!</button>
             <button type="reset">Delete</button>
         </form>
     </section>
@@ -71,7 +71,6 @@ form{
     align-items: center;
     justify-content: center;
     padding: 1vh 1vw;    
-    
     max-width: 100%;
 }
 
@@ -81,7 +80,6 @@ input{
     padding: 1vh 1vw;
     font-family: 'Comic Neue', cursive; 
     background: #FFD857;
-
     max-width: 100%;    
 }
 
@@ -94,7 +92,6 @@ button{
     font-family: 'Comic Neue', cursive;
     font-weight: bold;   
     overflow-wrap: break-word; 
-    
     min-width: 15vw;
 }
 
