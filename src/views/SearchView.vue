@@ -1,5 +1,5 @@
 <script setup>
-import pokemonSearch from "../services/ConnectApi"
+import pokemonSearch from "../assets/services/ConnectApi"
 
 function ChangeButton(){
     

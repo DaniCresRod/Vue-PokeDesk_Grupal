@@ -1,71 +1,59 @@
 <script setup>
-  import { ref } from 'vue'
-  defineProps({
-    name: {
-      type: String,
-      required: true
-    },
-    id: {
-      type: String,
-      required: true  
-      }
-  });
-
   function getRandomInt(min, max) {
-      return Math.floor(Math.random() * (max - min)) + min;
-  }
+    return Math.floor(Math.random() * (max - min)) + min;
+}
 
-  for (let i = 0; i < 10; i++){
-      document.addEventListener("DOMContentLoaded", () => {
-          const ramdom = getRandomInt(1, 500)
-          fetchData(ramdom)
-      })
-      
-  }
+for (let i = 0; i < 10; i++){
+    document.addEventListener("DOMContentLoaded", () => {
+        const ramdom = getRandomInt(1, 500)
+        fetchData(ramdom)
+    })
+    
+}
 
-  const fetchData = async (id) => {
-      try {
-          console.log(id)
-          
-          const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-          const data = await res.json()
-          
-          console.log(data)
+const fetchData = async (id) => {
+    try {
+        console.log(id)
+        
+        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+        const data = await res.json()
+        
+        console.log(data)
 
-          const pokemon = {
-              id: id,
-              img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`,
-              imgJuego: data.sprites.front_default,
-              imgCvg: data.sprites.other.dream_world.front_default,
-              name: data.name,
-              experiencia: data.base_experience,
-              hp: data.stats[0].base_stat,
-              ataque: data.stats[1].base_stat,
-              defensa: data.stats[2].base_stat,
-              especial: data.stats[3].base_stat,
-          }
+        const pokemon = {
+            id: id,
+            img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`,
+            imgJuego: data.sprites.front_default,
+            imgCvg: data.sprites.other.dream_world.front_default,
+            nombre: data.name,
+            experiencia: data.base_experience,
+            hp: data.stats[0].base_stat,
+            ataque: data.stats[1].base_stat,
+            defensa: data.stats[2].base_stat,
+            especial: data.stats[3].base_stat,
+        }
 
-          pintarCard(pokemon)
-      
-      } catch (error) {
-          console.log(error)
-      }
-  } 
+        pintarCard(pokemon)
+    
+    } catch (error) {
+        console.log(error)
+    }
+} 
 
-  const pintarCard = pokemon => {
-      const flex = document.querySelector('.flex')
-      const template = document.getElementById('card').content
-      const clone = template.cloneNode(true)
-      const fragment = document.createDocumentFragment()
+const pintarCard = pokemon => {
+    const flex = document.querySelector('.flex')
+    const template = document.getElementById('card').content
+    const clone = template.cloneNode(true)
+    const fragment = document.createDocumentFragment()
 
-      clone.querySelector('.card-body-img').setAttribute('src', pokemon.imgCvg)
-      // clone.querySelector('.card-body-img').setAttribute('src', pokemon.imgJuego)
-      clone.querySelector('.card-body-title').innerHTML = `${pokemon.name} <span> #${pokemon.id}</span>`
-      fragment.appendChild(clone)
-      flex.appendChild(fragment)
-  }
-
+    clone.querySelector('.card-body-img').setAttribute('src', pokemon.imgCvg)
+    // clone.querySelector('.card-body-img').setAttribute('src', pokemon.imgJuego)
+    clone.querySelector('.card-body-title').innerHTML = `${pokemon.nombre} <span> #${pokemon.id}</span>`
+    fragment.appendChild(clone)
+    flex.appendChild(fragment)
+}
 </script>
+
 <main class="flex"></main>
 
 <template id="card">
@@ -79,8 +67,9 @@
             </h1>
         </div>
     </article>
-</template>    
-<style>
+</template>
+
+<style scoped>
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
 /* Document
