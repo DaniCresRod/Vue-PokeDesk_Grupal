@@ -3,10 +3,11 @@ import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import SearchView from './views/SearchView.vue';
 import PokemonCard from './components/PokemonCard.vue';
+import RandomView from './views/RandomView.vue';
 </script>
 
 <template>
-
+  <RandomView/>
   <SearchView></SearchView>
   <PokemonCard cardClass="fire" imgUrl="src/assets/charmander.png"/>
   <!--<header>
