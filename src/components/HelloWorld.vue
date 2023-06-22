@@ -2,14 +2,20 @@
 defineProps({
   msg: {
     type: Object,
-    required: true
+    default: {
+      id: 0,
+      name:"Aun Nada"
+    },
   }
 })
+
+//https://stackoverflow.com/questions/41051972/vue-uncaught-typeerror-cannot-read-property-of-undefined
 </script>
 
 <template>
   <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
+    <h1 class="green" v-if="msg">{{ msg.id }}</h1>
+    <h1 class="green" v-if="msg">{{ msg.name }}</h1>
     <h3>
       You’ve successfully created a project with
       <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +

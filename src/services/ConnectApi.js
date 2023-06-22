@@ -10,7 +10,7 @@ export default async function ConnectApi(onePokemon){
         }
         catch{
             console.log("That Pokemon Doesn't exist! (yet)");
-            return 404;
+            return {id:0,name:"Desconocido"};
         }
     
 }

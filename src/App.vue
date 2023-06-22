@@ -4,20 +4,26 @@ import HelloWorld from './components/HelloWorld.vue'
 import SearchView from './views/SearchView.vue';
 import { ref, computed } from 'vue'
 
-const objectFromChild=ref();
+defineProps({
+  msg: {
+    type:Object
+  },
+  onSendDatos: {
+    type:Object
+  }
+});
 
+const objectFromChild=ref();
 
 function RecuperaDelHijo(data){
   objectFromChild.value=data;
 }
 
-const length = computed(() => {
+const miObject = computed(() => {
+    
+  return objectFromChild.value;
 
-console.log(typeof objectFromChild.value);
-console.log(objectFromChild.value);
-  
-  return objectFromChild.value; //objectFromChild.value;
-})
+});
 
 </script>
 
@@ -25,11 +31,11 @@ console.log(objectFromChild.value);
 
   <SearchView @send-datos="RecuperaDelHijo"></SearchView>  
 
-  <HelloWorld :msg = "length" ></HelloWorld>
+  <HelloWorld :msg = "miObject" ></HelloWorld>
 
-  <p>{{objectFromChild}}</p>
+  <!--<p>{{objectFromChild}}</p>
 
-  <!--<header>
+  <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
