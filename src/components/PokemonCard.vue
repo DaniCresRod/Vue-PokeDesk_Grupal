@@ -6,17 +6,24 @@ defineProps({
         },
         url: {
             type: String
+        }, 
+        objectFromChild: {
+            type: String
         }
     });
+
+    let pokemonID = objectFromChild.id;
+    let pokemonName = objectFromChild.name;
+    let pokemonImg = objectFromChild.sprites.other['official-artwork'].front_default;
     
 </script>
 
 
 <template>
     <div :class="cardClass">
-        <h3> {{  }} </h3>
-        <h2> {{  }} </h2>
-        <img :src="imgUrl"> <!-- pokemon.sprites.other.official-artwork.front-default -->
+        <h3> {{ pokemonID }} </h3>
+        <h2> {{ pokemonName }} </h2>
+        <img :src="pokemonImg"> <!-- pokemon.sprites.other.official-artwork.front-default -->
         <p>{{  }}</p>
         <p>{{  }}</p>
     </div>

@@ -1,6 +1,6 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+// import { RouterLink, RouterView } from 'vue-router'
+// import HelloWorld from './components/HelloWorld.vue'
 import SearchView from './views/SearchView.vue';
 import PokemonCard from './components/PokemonCard.vue';
 </script>
@@ -8,7 +8,7 @@ import PokemonCard from './components/PokemonCard.vue';
 <template>
 
   <SearchView></SearchView>
-  <PokemonCard cardClass="fire" imgUrl="src/assets/charmander.png"/>
+  <PokemonCard />
   <!--<header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
