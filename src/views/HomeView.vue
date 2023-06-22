@@ -1,11 +1,10 @@
 <script setup>
-  import TheRandom from '../components/TheRandom.vue'
-//import TheWelcome from '../components/TheWelcome.vue'
+// import TheWelcome from '../components/TheWelcome.vue'
+import PokemonCard from '../components/PokemonCard.vue';
 </script>
 
 <template>
   <main>
-    <RandomView/>
-      <!--  <TheWelcome />-->
+    <PokemonCard />
   </main>
 </template>
