@@ -4,7 +4,10 @@
 
 <style scoped>
     #randomContainer {
-        height: 20vh;
-        background-color: bisque;
+        height: 25vh;
+        width: 80vw;
+        background-color: deepskyblue;
+        margin: auto;
+        border-radius: 24px;
     }
 </style>

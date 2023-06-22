@@ -4,8 +4,10 @@
 
 <style scoped>
     #cardContainer {
-        height: 20vh;
-        width: 100vw;
-        background-color: red;
+        height: 50vh;
+        width: 80vw;
+        background-color: #ecc139;
+        margin: auto;
+        border-radius: 24px;
     }
 </style>

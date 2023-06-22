@@ -51,7 +51,7 @@
     margin:0 auto;
     width: 80vw;
     font-family: 'Comic Neue', cursive;
-    border-radius: 5px;
+    border-radius: 24px;
     background-color: #3951ED;
 }
 
