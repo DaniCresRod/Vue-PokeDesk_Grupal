@@ -1,13 +1,24 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+//import { RouterLink, RouterView } from 'vue-router'
+//import HelloWorld from './components/HelloWorld.vue'
 import SearchView from './views/SearchView.vue';
 import PokemonCard from './components/PokemonCard.vue';
+import { ref } from 'vue'
+
+const objectFromChild=ref();
+
+function RecuperaDelHijo(data){
+  objectFromChild.value=data.id;
+}
+
 </script>
 
 <template>
 
-  <SearchView></SearchView>
+  <SearchView @send-datos="RecuperaDelHijo"></SearchView>  
+
+  <p>{{objectFromChild}}</p>
+  
   <PokemonCard cardClass="fire" imgUrl="src/assets/charmander.png"/>
   <!--<header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
