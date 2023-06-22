@@ -5,7 +5,7 @@
 
 <template>
   <main>
-    <TheRandom/>
+    <RandomView/>
       <!--  <TheWelcome />-->
   </main>
 </template>

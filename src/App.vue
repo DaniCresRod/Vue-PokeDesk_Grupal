@@ -6,7 +6,7 @@ import RandomView from './components/RandomView.vue'
 <template>
   <header>
       <nav>
-        <RandomView/>
+      
       </nav>
   </header>
 
