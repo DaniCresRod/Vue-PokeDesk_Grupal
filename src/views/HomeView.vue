@@ -1,9 +1,11 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+  import TheRandom from '../components/TheRandom.vue'
+//import TheWelcome from '../components/TheWelcome.vue'
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <TheRandom/>
+      <!--  <TheWelcome />-->
   </main>
 </template>
