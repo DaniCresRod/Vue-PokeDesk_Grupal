@@ -1,5 +1,5 @@
 <script setup>
-import 
+// import objectFromChild from './../App.vue'
 defineProps({            
         cardClass: {
             type: String
@@ -9,12 +9,18 @@ defineProps({
         }, 
         objectFromChild: {
             type: String
+        },
+        pokemonData: {
+            type: Object,
+            default: 0
         }
     });
 
-    let pokemonID = objectFromChild.id;
-    let pokemonName = objectFromChild.name;
-    let pokemonImg = objectFromChild.sprites.other['official-artwork'].front_default;
+    
+    console.log(pokemonData);
+    // let pokemonID = objectFromChild.id;
+    // let pokemonName = objectFromChild.name;
+    // let pokemonImg = objectFromChild.sprites.other['official-artwork'].front_default;
     
 </script>
 
@@ -23,7 +29,7 @@ defineProps({
     <div :class="cardClass">
         <h3> {{ pokemonID }} </h3>
         <h2> {{ pokemonName }} </h2>
-        <img :src="pokemonImg"> <!-- pokemon.sprites.other.official-artwork.front-default -->
+        <img > <!-- pokemon.sprites.other.official-artwork.front-default -->
         <p>{{  }}</p>
         <p>{{  }}</p>
     </div>

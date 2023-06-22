@@ -3,21 +3,28 @@
 //// import HelloWorld from './components/HelloWorld.vue'
 import SearchView from './views/SearchView.vue';
 import PokemonCard from './components/PokemonCard.vue';
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+
+
 
 const objectFromChild=ref();
+let   bool = 0;
 
 function RecuperaDelHijo(data){
-  objectFromChild.value=data;
-}
-
-
+  objectFromChild.value = data;
+  bool = 1;
+};
+let getPokemonData = computed(() => {
+  let pokemonData = objectFromChild.value;
+  return pokemonData
+});
+console.log(typeof getPokemonData.value);
 </script>
 
 <template>
 
-  <SearchView></SearchView>
-  <PokemonCard />
+  <SearchView @send-datos="RecuperaDelHijo" ></SearchView>
+  <PokemonCard v-if="bool" :pokemonID="pokemonData"/>
   <!--<header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
