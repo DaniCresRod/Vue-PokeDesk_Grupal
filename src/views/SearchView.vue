@@ -27,18 +27,13 @@ function Search(){
     
     data.value = pokemonSearch(searchValue);
 
-    (data.value).then(x=>console.log(x));
+    //(data.value).then(x=>console.log(x));
 
     
     (data.value).then(x=> emit('sendDatos', x));    
 
     document.querySelector("#searchBar input").value="";
 }
-/*
-onUpdated(() => {
-    
-});*/
-
 
 
 

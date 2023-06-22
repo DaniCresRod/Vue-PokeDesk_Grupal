@@ -1,20 +1,31 @@
 <script setup>
 //import { RouterLink, RouterView } from 'vue-router'
-//import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from './components/HelloWorld.vue'
 import SearchView from './views/SearchView.vue';
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 const objectFromChild=ref();
 
+
 function RecuperaDelHijo(data){
-  objectFromChild.value=data.id;
+  objectFromChild.value=data;
 }
+
+const length = computed(() => {
+
+console.log(typeof objectFromChild.value);
+console.log(objectFromChild.value);
+  
+  return objectFromChild.value; //objectFromChild.value;
+})
 
 </script>
 
 <template>
 
   <SearchView @send-datos="RecuperaDelHijo"></SearchView>  
+
+  <HelloWorld :msg = "length" ></HelloWorld>
 
   <p>{{objectFromChild}}</p>
 
