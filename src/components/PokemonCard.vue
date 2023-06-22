@@ -1,5 +1,5 @@
 <script setup>
-
+import 
 defineProps({            
         cardClass: {
             type: String

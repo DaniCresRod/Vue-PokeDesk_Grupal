@@ -1,5 +1,8 @@
 <script setup>
 import pokemonSearch from "../services/ConnectApi"
+import { ref, defineEmits } from "vue";
+
+const data = ref();
 
 function ChangeButton(){
     
@@ -11,6 +14,8 @@ function ChangeButton(){
     }    
 }
 
+let emit=defineEmits('sendDatos');
+
 function Search(){
     let searchValue = document.querySelector("#searchBar input").value;
     if(searchValue.length==0){
@@ -18,14 +23,21 @@ function Search(){
         if(searchValue>1010){
             searchValue+=8990;
         }
-    }else if(isNaN(searchValue))searchValue=searchValue.toLowerCase();
+    }else if(isNaN(searchValue))searchValue=searchValue.toLowerCase();    
     
-    //let respuesta = 
-    pokemonSearch(searchValue);
+    data.value = pokemonSearch(searchValue);
 
-    //console.log(respuesta);
+    (data.value).then(x=>console.log(x));
+
+    
+    (data.value).then(x=> emit('sendDatos', x));    
+
     document.querySelector("#searchBar input").value="";
 }
+/*
+onUpdated(() => {
+    
+});*/
 
 
 
