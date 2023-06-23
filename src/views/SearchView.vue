@@ -1,8 +1,10 @@
 <script setup>
 import pokemonSearch from "../services/ConnectApi"
-import { ref, defineEmits } from "vue";
+import { ref } from "vue";
 
 const data = ref();
+
+document.querySelector("#searchBar input").addEventListener("keyInput")
 
 function ChangeButton(){
     
@@ -14,43 +16,34 @@ function ChangeButton(){
     }    
 }
 
-let emit=defineEmits('sendDatos');
+let emit=defineEmits(['sendDatos']);
 
 function Search(){
     let searchValue = document.querySelector("#searchBar input").value;
     if(searchValue.length==0){
-        searchValue=Math.floor(Math.random()*1281)+1
-        if(searchValue>1010){
-            searchValue+=8990;
-        }
+        searchValue=Math.floor(Math.random()*1010)+1
+        
     }else if(isNaN(searchValue))searchValue=searchValue.toLowerCase();    
     
     data.value = pokemonSearch(searchValue);
 
-    (data.value).then(x=>console.log(x));
-
+    //(data.value).then(x=>console.log(x));    
     
-    (data.value).then(x=> emit('sendDatos', x));    
+    (data.value).then( x=> emit('sendDatos', x)); 
 
     document.querySelector("#searchBar input").value="";
 }
-/*
-onUpdated(() => {
-    
-});*/
-
-
-
 
 </script>
 
 <template>
 
     <section id="searchBar">
+
         <h3>Look up your Pokemon name or number</h3>
         <form>
             <input type="text" placeholder="Busca un pokemon!" autocomplete="on" size="40" @input="ChangeButton()">
-            <button type="button" autofocus @click="Search()">Find whatever!</button>
+            <button type="button" @click="Search()">Find whatever!</button>
             <button type="reset">Delete</button>
         </form>
         
@@ -75,7 +68,6 @@ h3{
     font-weight: bold;
     margin-left: 2vw;
     font-size: x-large;
-
 }
 
 form{
@@ -116,7 +108,6 @@ button{
 button:hover{
     background: #FFD857;
     transform: scale(1.1);
-
 }
 
 

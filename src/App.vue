@@ -1,15 +1,30 @@
 <script setup>
 //import { RouterLink, RouterView } from 'vue-router'
-//import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from './components/HelloWorld.vue'
 import SearchView from './views/SearchView.vue';
 import PokemonCard from './components/PokemonCard.vue';
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+
+defineProps({
+  msg: {
+    type:Object
+  },
+  onSendDatos: {
+    type:Object
+  }
+});
 
 const objectFromChild=ref();
 
 function RecuperaDelHijo(data){
-  objectFromChild.value=data.id;
+  objectFromChild.value=data;
 }
+
+const miObject = computed(() => {
+    
+  return objectFromChild.value;
+
+});
 
 </script>
 
@@ -17,10 +32,11 @@ function RecuperaDelHijo(data){
 
   <SearchView @send-datos="RecuperaDelHijo"></SearchView>  
 
-  <p>{{objectFromChild}}</p>
-  
-  <PokemonCard cardClass="fire" imgUrl="src/assets/charmander.png"/>
-  <!--<header>
+  <HelloWorld :msg = "miObject" ></HelloWorld>
+
+  <!--<p>{{objectFromChild}}</p>
+
+  <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
