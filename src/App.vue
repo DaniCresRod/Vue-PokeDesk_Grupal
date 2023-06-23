@@ -33,7 +33,7 @@ const miObject = computed(() => {
 <template>
 
   <SearchView @send-datos="RecuperaDelHijo"></SearchView>  
-  <PokemonCard :pokemon="miObject"/>
+  <PokemonCard :pokemon="miObject" />
   <!-- <HelloWorld :msg = "miObject" ></HelloWorld> -->
 
   <!--<p>{{objectFromChild}}</p>

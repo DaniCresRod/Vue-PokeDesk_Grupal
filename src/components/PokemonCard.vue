@@ -18,6 +18,8 @@ const props = defineProps({
   }
 })
 
+
+
 let pokemonImg = computed(() => {
   if (props.pokemon.sprites.value !== null) {
     return props.pokemon.sprites.front_default
@@ -33,7 +35,7 @@ let pokemonImg = computed(() => {
 </script>
 
 <template v-if="pokemon">
-  <div :class="cardClass">
+  <div :class="pokemon.types[0].type['name']">
     <h2>{{ pokemon.id }}</h2>
     <h2>{{ pokemon.name }}</h2>
     <img v-if="pokemonImg" :src="pokemonImg" />
@@ -46,11 +48,14 @@ let pokemonImg = computed(() => {
 <style scoped>
 div {
   background: rgb(109, 102, 102);
-  width: 70%;
+  width: 300px;
+  height: 450px;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 2px solid #fff;
+  box-shadow: 2px rgba(0, 0, 0, 0.2);
 }
 div img {
   width: 250px;
