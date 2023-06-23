@@ -4,7 +4,13 @@ import PokemonCard from '../components/PokemonCard.vue';
 </script>
 
 <template>
-  <main>
-    <PokemonCard />
-  </main>
+  <body>
+     <main>
+
+    </main>
+  </body>
 </template>
+
+<style scoped>
+ 
+</style>
