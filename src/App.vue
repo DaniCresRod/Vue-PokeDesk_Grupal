@@ -1,6 +1,6 @@
 <script setup>
-//import { RouterLink, RouterView } from 'vue-router'
-//import HelloWorld from './components/HelloWorld.vue'
+//// import { RouterLink, RouterView } from 'vue-router'
+//// import HelloWorld from './components/HelloWorld.vue'
 import SearchView from './views/SearchView.vue';
 import PokemonCard from './components/PokemonCard.vue';
 import { ref, computed } from 'vue'
@@ -15,6 +15,7 @@ defineProps({
 });
 
 const objectFromChild=ref();
+
 
 function RecuperaDelHijo(data){
   objectFromChild.value=data;

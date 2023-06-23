@@ -2,6 +2,8 @@
 import pokemonSearch from "../services/ConnectApi"
 import { ref } from "vue";
 
+
+
 const data = ref();
 
 
