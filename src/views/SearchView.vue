@@ -1,41 +1,39 @@
 <script setup>
-    import pokemonSearch from "../services/ConnectApi"
-    import { ref } from "vue";
+import pokemonSearch from "../services/ConnectApi"
+import { ref } from "vue";
 
-    const data = ref();
 
-    document.addEventListener("keypress", (event)=>{
-        if(event.key=="Enter"){
-            event.preventDefault();
-        }
-        
-    })
 
-    function ChangeButton(){
-        
-        if(document.querySelector("#searchBar input").value.length>0){
-            document.querySelector("#searchBar button:nth-of-type(1)").textContent="Find It!"        
-        }
-        else{
-            document.querySelector("#searchBar button:nth-of-type(1)").textContent="Find whatever!"
-        }    
+const data = ref();
+
+
+function ChangeButton(){
+    
+    if(document.querySelector("#searchBar input").value.length>0){
+        document.querySelector("#searchBar button:nth-of-type(1)").textContent="Find It!"        
     }
+    else{
+        document.querySelector("#searchBar button:nth-of-type(1)").textContent="Find whatever!"
+    }    
+}
 
-    let emit=defineEmits(['sendDatos']);
+let emit=defineEmits(['sendDatos']);
 
-    function Search(){
-        let searchValue = document.querySelector("#searchBar input").value;
-        if(searchValue.length==0){
-            searchValue=Math.floor(Math.random()*1010)+1
-            
-        }else if(isNaN(searchValue))searchValue=searchValue.toLowerCase();    
+function Search(){
+    let searchValue = document.querySelector("#searchBar input").value;
+    if(searchValue.length==0){
+        searchValue=Math.floor(Math.random()*1010)+1
         
-        data.value = pokemonSearch(searchValue);     
-        
-        (data.value).then( x=> emit('sendDatos', x)); 
+    }else if(isNaN(searchValue))searchValue=searchValue.toLowerCase();    
+    
+    data.value = pokemonSearch(searchValue);
 
-        document.querySelector("#searchBar input").value="";
-    }
+    //(data.value).then(x=>console.log(x));    
+    
+    (data.value).then( x=> emit('sendDatos', x)); 
+
+    document.querySelector("#searchBar input").value="";
+}
 
 </script>
 
@@ -49,6 +47,7 @@
             <button type="button" @click="Search()">Find whatever!</button>
             <button type="reset">Delete</button>
         </form>
+        
     </section>
 
 </template>
@@ -61,7 +60,7 @@
     margin:0 auto;
     width: 80vw;
     font-family: 'Comic Neue', cursive;
-    border-radius: 24px;
+    border-radius: 5px;
     background-color: #3951ED;
 }
 
@@ -70,7 +69,6 @@ h3{
     font-weight: bold;
     margin-left: 2vw;
     font-size: x-large;
-    text-align: center;
 }
 
 form{
@@ -81,6 +79,7 @@ form{
     align-items: center;
     justify-content: center;
     padding: 1vh 1vw;    
+    
     max-width: 100%;
 }
 
@@ -90,6 +89,7 @@ input{
     padding: 1vh 1vw;
     font-family: 'Comic Neue', cursive; 
     background: #FFD857;
+
     max-width: 100%;    
 }
 
@@ -102,6 +102,7 @@ button{
     font-family: 'Comic Neue', cursive;
     font-weight: bold;   
     overflow-wrap: break-word; 
+    
     min-width: 15vw;
 }
 
@@ -109,5 +110,6 @@ button:hover{
     background: #FFD857;
     transform: scale(1.1);
 }
+
 
 </style>
