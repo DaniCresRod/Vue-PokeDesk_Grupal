@@ -4,6 +4,7 @@ import RandomView from './views/RandomView.vue';
 import SearchView from './views/SearchView.vue';
 import PokemonCard from './components/PokemonCard.vue';
 import { ref, computed } from 'vue'
+import TypeSearchView from './views/TypeSearchView.vue';
 
 defineProps({
   msg: {
@@ -40,6 +41,9 @@ const miObject = computed(() => {
       </section>
       <section id="searchView">
         <SearchView @send-datos="RecuperaDelHijo"></SearchView>  
+      </section>  
+      <section id="searchView">
+        <TypeSearchView/>
       </section>  
       <section id="pokemonCard">
         <PokemonCard :pokemon="miObject" />
