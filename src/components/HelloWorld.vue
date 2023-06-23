@@ -1,5 +1,8 @@
 <script setup>
-defineProps({
+
+import { onUpdated } from 'vue';
+
+const props=defineProps({
   msg: {
     type: Object,
     default: {
@@ -8,6 +11,13 @@ defineProps({
     },
   }
 })
+
+onUpdated(() => {
+  console.log(props.msg.name);
+})
+
+
+
 
 //https://stackoverflow.com/questions/41051972/vue-uncaught-typeerror-cannot-read-property-of-undefined
 </script>
