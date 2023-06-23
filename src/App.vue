@@ -26,8 +26,6 @@ const miObject = computed(() => {
   return objectFromChild.value;
 
 });
-
-
 </script>
 
 <template>
