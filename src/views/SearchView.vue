@@ -4,7 +4,12 @@ import { ref } from "vue";
 
 const data = ref();
 
-document.querySelector("#searchBar input").addEventListener("keyInput")
+document.addEventListener("keypress", (event)=>{
+    if(event.key=="Enter"){
+        event.preventDefault();
+    }
+    
+})
 
 function ChangeButton(){
     
