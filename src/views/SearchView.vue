@@ -4,7 +4,6 @@ import { ref } from "vue";
 
 const data = ref();
 
-document.querySelector("#searchBar input").addEventListener("keyInput")
 
 function ChangeButton(){
     

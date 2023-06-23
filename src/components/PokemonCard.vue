@@ -1,114 +1,130 @@
 <script setup>
+import { computed } from 'vue'
 
-defineProps({            
-        cardClass: {
-            type: String
-        },
-        url: {
-            type: String
-        }
-    });
-    
+const props = defineProps({
+  cardClass: {
+    type: String
+  },
+  pokemon: {
+    type: Object,
+    // eslint-disable-next-line vue/require-valid-default-prop
+    default: {
+      id: 0,
+      name: 'No pokemon Selected',
+      sprites: {
+        front_default: ''
+      }
+    }
+  }
+})
+
+let pokemonImg = computed(() => {
+  if (props.pokemon.sprites.value !== null) {
+    return props.pokemon.sprites.front_default
+  } else {
+    return null
+  }
+})
+
+// onUpdated(() => {
+//   pokemonImg.value = props.pokemon.sprites.front_default
+//   console.log(pokemonImg.value)
+// })
 </script>
 
-
-<template>
-    <div :class="cardClass">
-        <h3> {{  }} </h3>
-        <h2> {{  }} </h2>
-        <img :src="imgUrl"> <!-- pokemon.sprites.other.official-artwork.front-default -->
-        <p>{{  }}</p>
-        <p>{{  }}</p>
-    </div>
-
-    
+<template v-if="pokemon">
+  <div :class="cardClass">
+    <h2>{{ pokemon.id }}</h2>
+    <h2>{{ pokemon.name }}</h2>
+    <img v-if="pokemonImg" :src="pokemonImg" />
+    <!-- pokemon.sprites.other.official-artwork.front-default -->
+    <p v-for="(eachType, index) in pokemon.types" :key="index">{{ eachType.type.name }}</p>
+    <!-- <p v-if="pokemon">{{ pokemon.types[1].type.name }}</p> -->
+  </div>
 </template>
 
-
 <style scoped>
-    div {
-        background: rgb(109, 102, 102);
-        width: 70%;
-        border-radius: 5px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    div img {
-        width: 250px;
-    }
-    
-    .fire{
-        background-color: #f05030;
-    }
+div {
+  background: rgb(109, 102, 102);
+  width: 70%;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+div img {
+  width: 250px;
+}
 
-    .water{
-        background-color: #3899f8;
-    }
+.fire {
+  background-color: #f05030;
+}
 
-    .electric{
-        background: #f8d030;
-    }
+.water {
+  background-color: #3899f8;
+}
 
-    .steel {
-        background: #a8a8c0;
-    }
+.electric {
+  background: #f8d030;
+}
 
-    .bug {
-        background: #a8b820;
-    }
+.steel {
+  background: #a8a8c0;
+}
 
-    .dragon {
-        background: #7860e0; 
-    }
+.bug {
+  background: #a8b820;
+}
 
-    .ghost {
-        background: #6060b0;
-    }
+.dragon {
+  background: #7860e0;
+}
 
-    .fairy {
-        background: #e79fe7;
-    }
+.ghost {
+  background: #6060b0;
+}
 
-    .ice {
-        background: #58c8e0;
-    }
+.fairy {
+  background: #e79fe7;
+}
 
-    .fight {
-        background: #a05038;
-    }
+.ice {
+  background: #58c8e0;
+}
 
-    .normal {
-        background: #a8a090;
-    }
+.fight {
+  background: #a05038;
+}
 
-    .grass {
-        background: #78c850;
-    }
+.normal {
+  background: #a8a090;
+}
 
-    .psychic {
-        background: #f870a0;
-    }
+.grass {
+  background: #78c850;
+}
 
-    .rock {
-        background: #b8a058;
-    }
+.psychic {
+  background: #f870a0;
+}
 
-    .dark {
-        background: #7a5848;
-    }
+.rock {
+  background: #b8a058;
+}
 
-    .ground {
-        background: #e9d6a4;
-    }
+.dark {
+  background: #7a5848;
+}
 
-    .poison {
-        background: #b058a0;
-    }
+.ground {
+  background: #e9d6a4;
+}
 
-    .flying {
-        background: #98a8f0;
-    }
+.poison {
+  background: #b058a0;
+}
 
-    
+.flying {
+  background: #98a8f0;
+}
 </style>

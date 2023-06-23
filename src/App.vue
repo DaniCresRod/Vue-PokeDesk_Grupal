@@ -1,6 +1,6 @@
 <script setup>
 //import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+//import HelloWorld from './components/HelloWorld.vue'
 import SearchView from './views/SearchView.vue';
 import PokemonCard from './components/PokemonCard.vue';
 import { ref, computed } from 'vue'
@@ -26,13 +26,14 @@ const miObject = computed(() => {
 
 });
 
+
 </script>
 
 <template>
 
   <SearchView @send-datos="RecuperaDelHijo"></SearchView>  
-
-  <HelloWorld :msg = "miObject" ></HelloWorld>
+  <PokemonCard :pokemon="miObject"/>
+  <!-- <HelloWorld :msg = "miObject" ></HelloWorld> -->
 
   <!--<p>{{objectFromChild}}</p>
 
