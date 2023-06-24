@@ -1,16 +1,24 @@
-export default async function ConnectApi(onePokemon){
-    
-        try{
-            const response = await fetch("https://pokeapi.co/api/v2/pokemon/"+onePokemon);
-            const data = await response.json();
+class Pokemon {
 
-             console.log(data);
+  url = "https://pokeapi.co/api/v2/pokemon/";
 
-            return data.value;
-        }
-        catch (error){
-            console.log("That Pokemon Doesn't exist! (yet)");
-            return "1"
-        }
-    
+  async fetchAll() {
+    try {
+      const response = await fetch(this.url);
+      const json = await response.json();
+
+      let pokemons = [];
+
+      for (const pokemon of json.results) {
+        pokemons.push(pokemon);
+      }
+
+      return pokemons;
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }
+
+export default Pokemon;

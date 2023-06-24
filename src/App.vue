@@ -8,8 +8,8 @@ import RandomView from './views/RandomView.vue';
 
 <template>
   <RandomView/>
-  <SearchView></SearchView>
-  <PokemonCard cardClass="fire" imgUrl="src/assets/charmander.png"/>
+ <!--<SearchView></SearchView>
+  //<PokemonCard cardClass="fire" imgUrl="src/assets/charmander.png"/>-->
   <!--<header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 

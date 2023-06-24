@@ -36,13 +36,13 @@ const fetchData = async (id) => {
         pintarCard(pokemon)
     
     } catch (error) {
-        console.log(error)
+        //console.log(error)
     }
 } 
 
 const pintarCard = pokemon => {
     const flex = document.querySelector('.flex')
-    const template = document.getElementById('card').content
+    const template = document.querySelector('card').value
     const clone = template.cloneNode(true)
     const fragment = document.createDocumentFragment()
 
@@ -58,12 +58,12 @@ const pintarCard = pokemon => {
 
 <template id="card">
     <article class="card">
-        <img src="./images/bg-pattern-card.svg" alt="imagen header card" class="card-header">
+        <img src="../assets/images/bg-pattern-card.svg" alt="imagen header card" class="card-header">
         <div class="card-body">
-            <img src="./images/image-victor.jpg" alt="imagen de vitoko" class="card-body-img">
+            <img src="" alt="imagen de vitoko" class="card-body-img">
             <h1 class="card-body-title">
-                Victor charst
-                <span>26</span>
+                
+                <span></span>
             </h1>
         </div>
     </article>
