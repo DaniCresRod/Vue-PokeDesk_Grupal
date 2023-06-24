@@ -1,24 +1,16 @@
-class Pokemon {
+export default async function ConnectApi(onePokemon){
+    
+  try{
+      const response = await fetch("https://pokeapi.co/api/v2/pokemon/"+onePokemon);
+      const data = await response.json();
 
-  url = "https://pokeapi.co/api/v2/pokemon/";
+      //console.log(data);
 
-  async fetchAll() {
-    try {
-      const response = await fetch(this.url);
-      const json = await response.json();
-
-      let pokemons = [];
-
-      for (const pokemon of json.results) {
-        pokemons.push(pokemon);
-      }
-
-      return pokemons;
-
-    } catch (error) {
-      console.error(error);
-    }
+      return data;
   }
-}
+  catch (error){
+      console.log("That Pokemon Doesn't exist! (yet)");
+      return {id:0,name:"Desconocido"};
+  }
 
-export default Pokemon;
+}
