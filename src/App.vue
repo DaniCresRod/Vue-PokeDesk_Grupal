@@ -27,6 +27,7 @@ const miObject = computed(() => {
   return objectFromChild.value;
 
 });
+
 </script>
 
 <template>
@@ -42,8 +43,8 @@ const miObject = computed(() => {
       <section id="searchView">
         <SearchView @send-datos="RecuperaDelHijo"></SearchView>  
       </section>  
-      <section id="searchView">
-        <TypeSearchView/>
+      <section id="searchView2">
+        <TypeSearchView @send-datos="RecuperaDelHijo"/>
       </section>  
       <section id="pokemonCard">
         <PokemonCard :pokemon="miObject" />
