@@ -5,6 +5,7 @@ import SearchView from './views/SearchView.vue';
 import PokemonCard from './components/PokemonCard.vue';
 import { ref, computed } from 'vue'
 import TypeSearchView from './views/TypeSearchView.vue';
+import Evolution from './components/EvolutionLine.vue';
 
 defineProps({
   msg: {
@@ -45,10 +46,13 @@ const miObject = computed(() => {
       </section>       
       <section id="pokemonCard">
         <PokemonCard :pokemon="miObject" />
-      </section>  
+      </section>
       <section id="searchView2">
         <TypeSearchView @send-datos="RecoversFromSon"/>
       </section>  
+	  <Suspense>
+		  <Evolution :data="miObject"/>
+	  </Suspense>
     </main>
   </body>
 </template>
