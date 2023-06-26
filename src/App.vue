@@ -46,7 +46,7 @@ const miObject = computed(() => {
       </section>       
       <section id="pokemonCard">
         <PokemonCard :pokemon="miObject" />
-		<Evolution :data="miObject"/>
+		<Evolution :data="miObject" @response="(data) => objectFromChild = data"/>
       </section>
       <section id="searchView2">
         <TypeSearchView @send-datos="RecoversFromSon"/>
@@ -95,6 +95,6 @@ const miObject = computed(() => {
         border-radius: 24px;
         display: flex;
 		flex-direction: column;
-        justify-content: center;
+        align-items: center;
   }
 </style>

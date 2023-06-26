@@ -11,25 +11,25 @@ const props = defineProps(
 	}
 )
 
+const emit = defineEmits(['response']);
+
 const	getData = new GetData();
 let 	speciesData = ref();
 let 	evolutionData = ref();
-//let		evolutionUrl;
 let		baseForm;
 let		evOne = 0;
 let		evTwo = 0;
-let		testName; //to delete when in final, to be replaced by name.
-let		testH2 = ref();
-let	baseFormId = ref();
-let	evOneId = ref();
-let	evTwoId = ref();
-let baseFormImg = ref();
-let evOneImg = ref();
-let evTwoImg = ref();
-let name = ref();
-let baseFormName = ref(0);
-let evOneName = ref(0);
-let evTwoName = ref(0);
+let		baseFormId = ref();
+let		evOneId = ref();
+let		evTwoId = ref();
+let 	baseFormImg = ref();
+let 	evOneImg = ref();
+let 	evTwoImg = ref();
+let 	name = ref();
+let 	baseFormName = ref(0);
+let 	evOneName = ref(0);
+let 	evTwoName = ref(0);
+let 	evLine = ref(0);
 
 const	getId = (url) =>
 {
@@ -64,6 +64,7 @@ const	ftUpdate = async(evolutionUrl) =>
 	console.log(evolutionData.value.data.chain.evolves_to.length);
 	if (evolutionData.value.data.chain.evolves_to.length !== 0)
 	{
+		evLine.value = 1;
 		evOne = evolutionData.value.data.chain.evolves_to[0].species.name;
 		if (evolutionData.value.data.chain.evolves_to[0].evolves_to.length !== 0)
 			evTwo = evolutionData.value.data.chain.evolves_to[0].evolves_to[0].species.name;
@@ -79,6 +80,7 @@ const	ftUpdate = async(evolutionUrl) =>
 		evOneImg.value = "";
 		evTwo = 0;
 		evTwoImg.value = "";
+		evLine.value = 0;
 	}
 	console.log(baseForm);
 	console.log(evOne);
@@ -136,7 +138,7 @@ onUpdated(async() =>
 	name.value = props.data.name;
 	console.log(name.value);
 	speciesData.value = await getData.getData(`https://pokeapi.co/api/v2/pokemon-species/${name.value}`);
-	console.log(typeof speciesData.value);
+	console.log(speciesData.value);
 	if (typeof speciesData.value !== "string")
 	{
 		ftUpdate(speciesData.value.data.evolution_chain.url);
@@ -156,33 +158,29 @@ const	ftCapitalize = (word) =>
 	return (capitalizeFirst + charsLeft);
 }
 
-	/*onUpdated(() => {
-	console.log(props.data.name);
-	testH2.value = props.data.name;
-	//console.log(testH2.value);
-	})*/
-
-	//let answer = ref('');
-	/*watch(testH2, () =>{
-		if (testH2.value !== 0)
-			answer.value = testH2.value;
-	})*/
+const sendData = async(id) =>
+{
+	let	data = ref();
 	
-
+	data.value = await getData.getData(`https://pokeapi.co/api/v2/pokemon/${id}`);
+	console.log(id, data.value.data);
+	emit('response', data.value.data);
+}
+	
 </script>
 
 <template>
-	<h1>Evolution Line</h1>
+	<h1 v-if="evLine">Evolution Line</h1>
 	<section id="evolution-line">
-		<section v-if="baseFormImg" class="evolution">
+		<section v-if="baseFormImg" @click="sendData(baseFormId)" class="evolution">
 			<img :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${baseFormId}.png`" class="poke-img"/>
 			<h3>{{ ftCapitalize(baseFormName) }}</h3>
 		</section>
-		<section v-if="evOneImg" class="evolution">
+		<section v-if="evOneImg" @click="sendData(evOneId)" class="evolution">
 			<img :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evOneId}.png`" class="poke-img"/>
 			<h3>{{ ftCapitalize(evOneName) }}</h3>
 		</section>
-		<section v-if="evTwoImg" class="evolution">
+		<section v-if="evTwoImg" @click="sendData(evTwoId)" class="evolution">
 			<img :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evTwoId}.png`" class="poke-img"/>
 			<h3>{{ ftCapitalize(evTwoName) }}</h3>
 		</section>
@@ -207,6 +205,6 @@ const	ftCapitalize = (word) =>
 	}
 	.poke-img
 	{
-		width: 60%;
+		width: 30%;
 	}
 </style>
