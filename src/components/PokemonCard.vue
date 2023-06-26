@@ -97,9 +97,6 @@ div {
   font-size: 1rem;
   border: 2px solid #fff;
   box-shadow: 10px 10px 12px 10px rgba(0, 0, 0, 0.3);
-  font-family: 'Comic Neue', cursive;
-  font-weight: 700;
-  text-transform: capitalize;
 }
 
 div h2 {
