@@ -14,10 +14,10 @@
     function ChangeButton(){
         
         if(document.querySelector("#searchBar input").value.length>0){
-            document.querySelector("#searchBar button:nth-of-type(1)").textContent="Find It!"        
+            document.querySelector("#searchBar button:nth-of-type(1)").textContent="Find It!" ;                   
         }
         else{
-            document.querySelector("#searchBar button:nth-of-type(1)").textContent="Find whatever!"
+            document.querySelector("#searchBar button:nth-of-type(1)").textContent="Find Random!";
         }    
     }
 
@@ -32,9 +32,12 @@
         
         data.value = pokemonSearch(searchValue);     
         
-        (data.value).then( x=> emit('sendDatos', x)); 
+        (data.value).then( x=> {
+            if(x.id!==0)emit('sendDatos', x)
+        }); 
 
         document.querySelector("#searchBar input").value="";
+        document.querySelector("#searchBar button:nth-of-type(1)").textContent="Find Random!";
     }
 
 </script>
@@ -45,8 +48,8 @@
 
         <h3>Look up your Pokemon name or number</h3>
         <form>
-            <input type="text" placeholder="Busca un pokemon!" autocomplete="on" size="40" @input="ChangeButton()">
-            <button type="button" @click="Search()">Find whatever!</button>
+            <input type="text" placeholder="Find a Pokemon!" autocomplete="on" size="40" @input="ChangeButton()">
+            <button type="button" @click="Search()">Find Random!</button>
             <button type="reset">Delete</button>
         </form>
     </section>
