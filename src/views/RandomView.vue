@@ -8,20 +8,21 @@
   let randoms = [];
   let emit = defineEmits(['sendDatos']);
 
-  onBeforeMount(()=>{while (randoms.length<10){
-    const random = Math.floor(Math.random() * 1010) + 1;
-    let existe = randoms.filter((r) => r == random);
-    if (existe.length == 0) {
-      randoms.push(random);
-      data.value = pokemonSearch(random);
-      (data.value).then(x => (pokemons.value).push(x));
-      console.log(data.value);
+  onBeforeMount(() => {
+    while (randoms.length < 10) {
+      const random = Math.floor(Math.random() * 1010) + 1;
+      let existe = randoms.filter((r) => r == random);
+      if (existe.length == 0) {
+        randoms.push(random);
+        data.value = pokemonSearch(random);
+        (data.value).then(x => (pokemons.value).push(x));
+      };
     };
-  }})
+  });
 
   function SendData(item) {
     emit('sendDatos', item);
-  }
+  };
   
 </script>
 
@@ -31,7 +32,6 @@
         <div class="card-body">
             <img :src="item.sprites.other['official-artwork'].front_default" :alt="item.name" class="card-body-img">
         </div></a>
-        
     </article>
 </template>
 
