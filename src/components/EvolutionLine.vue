@@ -194,8 +194,8 @@ const	ftCapitalize = (word) =>
 	#evolution-line
 	{
 		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
+    	flex-direction: row;
+    	justify-content: space-evenly;
     	width: 100%;
 	}
 	.evolution
@@ -207,6 +207,6 @@ const	ftCapitalize = (word) =>
 	}
 	.poke-img
 	{
-		width: 100%;
+		width: 60%;
 	}
 </style>
