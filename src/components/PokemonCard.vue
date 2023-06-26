@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, onUpdated, defineProps } from 'vue'
 
 const props = defineProps({
   cardClass: {
@@ -20,14 +20,44 @@ const props = defineProps({
 
 
 
+// let pokemonImg = computed(() => {
+//   if (props.pokemon.sprites.value !== null) {
+//     return props.pokemon.sprites.other['official-artwork'].front_default;
+//   } else {
+//     return null
+//   }
+// })
+
 let pokemonImg = computed(() => {
-  if (props.pokemon.sprites.value !== null) {
+  if (props.pokemon.sprites && props.pokemon.sprites.other && props.pokemon.sprites.other['official-artwork'] && props.pokemon.sprites.other['official-artwork'].front_default) {
     return props.pokemon.sprites.other['official-artwork'].front_default;
   } else {
-    return null
+    return null;
   }
-})
+});
 
+
+// let pokemonType = computed(() => {
+//   if (props.pokemon.types !== null){
+//     return props.pokemon.types[0].type['name']
+//   } else {
+//     return null
+//   }
+// })
+
+let pokemonType = computed(() => {
+  if (props.pokemon.types && props.pokemon.types.length > 0) {
+    return props.pokemon.types[0].type['name'];
+  } else {
+    return null;
+  }
+});
+
+
+// onUpdated(() => {
+//   pokemonType.value = props.pokemon.types[0].type['name'];
+//   return pokemonType.value
+// })
 // onUpdated(() => {
 //   pokemonImg.value = props.pokemon.sprites.front_default
 //   console.log(pokemonImg.value)
@@ -36,7 +66,7 @@ let pokemonImg = computed(() => {
 
 <template v-if="pokemon">
   <!-- <div :class="pokemon.types[0].type['name']"> -->
-  <div>
+  <div :class="pokemonType">
     <h2>{{ pokemon.id }}</h2>
     <h2>{{ pokemon.name }}</h2>
     <img v-if="pokemonImg" :src="pokemonImg" />
@@ -56,10 +86,14 @@ div {
   flex-direction: column;
   align-items: center;
   border: 2px solid #fff;
-  box-shadow: 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 10px 10px 12px 10px rgba(0, 0, 0, 0.3);
 }
 div img {
   width: 250px;
+}
+
+p {
+  margin: 0;
 }
 
 .fire {
