@@ -3,6 +3,7 @@
     import { ref, onMounted } from "vue";
 
     const data = ref();
+    const searchedValue=ref();
 
     document.addEventListener("keypress", (event)=>{
         if(event.key=="Enter"){
@@ -24,7 +25,9 @@
     let emit=defineEmits(['sendDatos']);
 
     function Search(){
+        document.getElementById("divNotFound").classList.add("invisible");
         let searchValue = document.querySelector("#searchBar input").value;
+        searchedValue.value=searchValue;
         if(searchValue.length==0){
             searchValue=Math.floor(Math.random()*1010)+1
             
@@ -33,7 +36,8 @@
         data.value = pokemonSearch(searchValue);     
         
         (data.value).then( x=> {
-            if(x.id!==0)emit('sendDatos', x)
+            if(x.id!==0){emit('sendDatos', x);}
+            else{document.getElementById("divNotFound").classList.remove("invisible");}
         }); 
 
         document.querySelector("#searchBar input").value="";
@@ -56,6 +60,9 @@
             <button type="button" @click="Search()">Find Random!</button>
             <button type="reset">Delete</button>
         </form>
+        <div id="divNotFound" class="invisible">
+            Couldn't find {{ searchedValue }}
+        </div>
     </section>
 
 </template>
@@ -78,6 +85,15 @@ h3{
     margin-left: 2vw;
     font-size: x-large;
     text-align: center;
+}
+
+#divNotFound{
+    color:red;
+    text-align: center;
+}
+
+.invisible{
+    display: none;    
 }
 
 form{
