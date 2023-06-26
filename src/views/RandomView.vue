@@ -5,26 +5,34 @@
 
   let data = ref();
   let pokemons = ref([]);
-
+  let emit = defineEmits(['sendDatos']);
+  
   onBeforeMount(()=>{for (let i = 0; i < 10; i++){
     const random = Math.floor(Math.random() * 1010)+1;
     console.log(random);
     data.value = pokemonSearch(random);
     (data.value).then(x => (pokemons.value).push(x));
-    (data.value).then(x=>console.log(x)); }})
+  }
+  })
 
+  function SendData(item){
+    emit('sendDatos', item);
+    console.log(item)
+  }
+  
 </script>
 
 <template id="card" class="flex" v-if="pokemons">
     <article class="card" v-for="(item, id) in pokemons" :key="id">
-        <img src="../assets/images/bg-pattern-card.svg" alt="imagen header card" class="card-header">
+        <a @click="SendData(item)"><img src="../assets/images/bg-pattern-card.svg" alt="imagen header card" class="card-header">
         <div class="card-body">
             <img :src="item.sprites.other['official-artwork'].front_default" :alt="item.name" class="card-body-img">
             <h1 class="card-body-title">
                 {{ item.name }}
                 <span>{{ item.id }}</span>
             </h1>
-        </div>
+        </div></a>
+        
     </article>
 </template>
 
@@ -71,6 +79,7 @@ template{
   border: 0.2em solid #0AC;
   padding: .25rem;
   overflow: hidden;
+  cursor:pointer;
   -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
           box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
           

@@ -31,7 +31,8 @@ onBeforeMount(() => {
         
         //Adds eventListener to access each Pokemon info 
         document.querySelector("#AdvancedSearchTopics li:nth-of-type("+(i+1)+")").addEventListener("click", (event)=>{
-          document.getElementById("ShowAdvancedSearch").classList.remove("invisible");
+          document.getElementById("ShowAdvancedSearch").classList.add("invisible");
+          document.getElementById("SearchingSign").classList.remove("invisible");
 
           //Asks for the type (is written inside the clicked element)
           let response=TypeSearch(event.target.textContent);
@@ -39,17 +40,19 @@ onBeforeMount(() => {
 
           //Turns it into an array to use it in the v-for
           response.then((x)=>{
-              myArray.value=[];
+            document.getElementById("ShowAdvancedSearch").classList.remove("invisible");
+            document.getElementById("SearchingSign").classList.add("invisible");
+            myArray.value=[];
 
-              for(let i=0; i<x.length ; i++){
-                  
-                //The id is yet in the url. We don't want the special ones over id 1010
-                if((x[i].pokemon.url).split('/')[6]<=1010){
-                    //console.log((x[i].pokemon.url).split('/')[6]);
-                    (myArray.value).push(x[i]);
-                }
-                  
+            for(let i=0; i<x.length ; i++){
+                
+              //The id is yet in the url. We don't want the special ones over id 1010
+              if((x[i].pokemon.url).split('/')[6]<=1010){
+                  //console.log((x[i].pokemon.url).split('/')[6]);
+                  (myArray.value).push(x[i]);
               }
+                
+            }
           });
             
         })
@@ -90,7 +93,9 @@ function RetrieveFromGrandson(data){
 
     <div id="AdvancedSearchTopics" class="invisible">
     </div>
-
+    <div id="SearchingSign" class="invisible">
+      Buscando...
+    </div>
     <div id="ShowAdvancedSearch" class="invisible" v-if="myArray">
         <hr/>
         <ul>
@@ -122,6 +127,17 @@ function RetrieveFromGrandson(data){
     margin:0 auto;
 }
 
+#SearchingSign{
+  z-index: 2;
+  position:relative;
+  top: -15vh;
+  background: white;
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+  font-size: larger;
+}
+
 h3{
     color:white;
     font-weight: bold;
@@ -130,7 +146,7 @@ h3{
 }
 
 .invisible{
-    display: none;
+    display: none;    
 }
 
 #typeSearchBar :deep(ul) {
