@@ -13,11 +13,8 @@ class	GetData
 		catch(error)
 		{
 			console.log(error);
+			return (error.message);
 		}
-	}
-	getNumber()
-	{
-		return (Math.random());
 	}
 }
 
