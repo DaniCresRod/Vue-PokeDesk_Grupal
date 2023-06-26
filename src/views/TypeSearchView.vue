@@ -11,42 +11,50 @@ const myArray=ref([]);
 
 
 onBeforeMount(() => {
-    typesOfPokemon.value = TypeSearch("");
 
-    //(typesOfPokemon.value).then(x=>console.log(x));
+  //Looks for all the types
+  typesOfPokemon.value = TypeSearch("");
 
-    (typesOfPokemon.value).then(x => {
-        let mainDiv = document.getElementById("AdvancedSearchTopics");
+  //(typesOfPokemon.value).then(x=>console.log(x));
 
-        let mainDiv_innerUl = mainDiv.appendChild(document.createElement("ul"));
+  //Once fetched, creates the elements in the DOM
+  (typesOfPokemon.value).then(x => {
+      let mainDiv = document.getElementById("AdvancedSearchTopics");
 
-        for (var i = 0; i < x.length-2; i++) {
-            let eachLi=mainDiv_innerUl.appendChild(document.createElement("li"));
-            eachLi.textContent = x[i].name;
-            //eachLi.setAttribute("tag", x[i].url);
-            eachLi.classList.add(x[i].name);
+      let mainDiv_innerUl = mainDiv.appendChild(document.createElement("ul"));
+
+      for (var i = 0; i < x.length-2; i++) {
+        let eachLi=mainDiv_innerUl.appendChild(document.createElement("li"));
+        eachLi.textContent = x[i].name;
+        //eachLi.setAttribute("tag", x[i].url);
+        eachLi.classList.add(x[i].name);
+        
+        //Adds eventListener to access each Pokemon info 
+        document.querySelector("#AdvancedSearchTopics li:nth-of-type("+(i+1)+")").addEventListener("click", (event)=>{
+          document.getElementById("ShowAdvancedSearch").classList.remove("invisible");
+
+          //Asks for the type (is written inside the clicked element)
+          let response=TypeSearch(event.target.textContent);
+          myTypeOfPokemon.value=event.target.textContent;
+
+          //Turns it into an array to use it in the v-for
+          response.then((x)=>{
+              myArray.value=[];
+
+              for(let i=0; i<x.length ; i++){
+                  
+                //The id is yet in the url. We don't want the special ones over id 1010
+                if((x[i].pokemon.url).split('/')[6]<=1010){
+                    //console.log((x[i].pokemon.url).split('/')[6]);
+                    (myArray.value).push(x[i]);
+                }
+                  
+              }
+          });
             
-            document.querySelector("#AdvancedSearchTopics li:nth-of-type("+(i+1)+")").addEventListener("click", (event)=>{
-                document.getElementById("ShowAdvancedSearch").classList.remove("invisible");
-
-                let response=TypeSearch(event.target.textContent);
-                myTypeOfPokemon.value=event.target.textContent;
-
-                response.then((x)=>{
-                    myArray.value=[];
-
-                    for(let i=0; i<x.length ; i++){
-                        if((x[i].pokemon.url).split('/')[6]<=1010){
-                            //console.log((x[i].pokemon.url).split('/')[6]);
-                            (myArray.value).push(x[i]);
-                        }
-                        
-                    }
-                });
-                
-            })
-        }        
-    });    
+        })
+      }        
+  });    
 })
 
 onMounted(() => {
@@ -66,8 +74,9 @@ onMounted(() => {
     });
 })
 
+//Gives the information to the father
 let emit=defineEmits(['sendDatos']);
-function RecuperaDelNieto(data){
+function RetrieveFromGrandson(data){
      emit('sendDatos', data);
 }
 
@@ -86,7 +95,7 @@ function RecuperaDelNieto(data){
         <hr/>
         <ul>
             <!--<li v-for="eachPokemon in myArray" :key="eachPokemon" :class="myTypeOfPokemon">{{eachPokemon.pokemon.name}}</li>-->
-            <SelectedTypePokemonComponent v-for="eachPokemon in myArray" :key="eachPokemon" :class="myTypeOfPokemon" :pokemon="eachPokemon.pokemon" @send-datos="RecuperaDelNieto"></SelectedTypePokemonComponent>
+            <SelectedTypePokemonComponent v-for="eachPokemon in myArray" :key="eachPokemon" :class="myTypeOfPokemon" :pokemon="eachPokemon.pokemon" @send-datos="RetrieveFromGrandson"></SelectedTypePokemonComponent>
         </ul>
         
     </div>
@@ -179,7 +188,7 @@ h3{
   background: #58c8e0;
 }
 
-:deep().fight {
+:deep().fighting {
   background: #a05038;
 }
 
