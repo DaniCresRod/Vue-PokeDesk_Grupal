@@ -9,7 +9,7 @@ const props = defineProps({
     type: Object,
     // eslint-disable-next-line vue/require-valid-default-prop
     default: {
-      id: 0,
+      id: "",
       name: 'No pokemon Selected',
       sprites: {
         front_default: ''
