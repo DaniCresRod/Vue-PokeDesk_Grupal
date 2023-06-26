@@ -77,11 +77,13 @@ const miObject = computed(() => {
   }
 
   #randomView {
-        height: 25vh;
+        height: 15vh;
         width: 80vw;
         background-color: deepskyblue;
         margin: auto;
         border-radius: 24px;
+        display: flex;
+        justify-content: space-around;
   }
 
   #pokemonCard {
@@ -90,5 +92,7 @@ const miObject = computed(() => {
         background-color: #ecc139;
         margin: auto;
         border-radius: 24px;
+        display: flex;
+        justify-content: center;
   }
 </style>
