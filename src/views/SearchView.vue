@@ -1,6 +1,6 @@
 <script setup>
     import pokemonSearch from "../services/ConnectApi"
-    import { ref } from "vue";
+    import { ref, onMounted } from "vue";
 
     const data = ref();
 
@@ -39,6 +39,10 @@
         document.querySelector("#searchBar input").value="";
         document.querySelector("#searchBar button:nth-of-type(1)").textContent="Find Random!";
     }
+
+    onMounted(() => {
+        Search();
+    })
 
 </script>
 

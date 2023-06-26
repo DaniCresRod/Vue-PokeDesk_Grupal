@@ -4,11 +4,8 @@
 </script>
 
 <template>
-  <body>
-     <main>
-
-    </main>
-  </body>
+  <main>
+  </main>
 </template>
 
 <style scoped>
