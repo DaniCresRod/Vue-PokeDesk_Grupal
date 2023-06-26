@@ -85,7 +85,7 @@ div {
   background: rgb(41, 41, 41);
   /* width: 300px; */
   /* height: 450px; */
-  width: 15vw;
+  width: 20vw;
   height: 46vh;
   border-radius: 5px;
   display: flex;
@@ -94,7 +94,7 @@ div {
   text-transform: capitalize;
   font-family: 'Comic Neue', cursive;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 1rem;
   border: 2px solid #fff;
   box-shadow: 10px 10px 12px 10px rgba(0, 0, 0, 0.3);
   font-family: 'Comic Neue', cursive;
@@ -105,10 +105,11 @@ div {
 div h2 {
   grid-row: 1;
   margin: auto auto;
+  padding-top: 10px;
 }
 
 div img {
-  width: 70%;
+  width: 15vw;
   margin: auto;
 }
 
