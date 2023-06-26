@@ -20,7 +20,7 @@ const props = defineProps({
 
 let pokemonImg = computed(() => {
   if (props.pokemon.sprites.value !== null) {
-    return props.pokemon.sprites.front_default
+    return props.pokemon.sprites.other['official-artwork'].front_default
   } else {
     return null
   }
@@ -66,92 +66,92 @@ div h2 {
     font-family: sans-serif;
 }
 
-.fire {
+:deep().fire {
   background-color: #f05030;
   color: #FFFE01;
 }
 
-.water {
+:deep().water {
   background-color: #3899f8;
   color: #FFFF00;
 }
 
-.electric {
+:deep().electric {
   background: #f8d030;
   color: #0400FF;
 }
 
-.steel {
+:deep().steel {
   background: #a8a8c0;
   color: #0102FF;
 }
 
-.bug {
+:deep().bug {
   background: #a8b820;
   color: #4500FF;
 }
 
-.dragon {
+:deep().dragon {
   background: #7860e0;
   color: #FFED1B;
 }
 
-.ghost {
+:deep().ghost {
   background: #6060b0;
   color: #FEFF00;
 }
 
-.fairy {
+:deep().fairy {
   background: #e79fe7;
   color: #0E01FF;
 }
 
-.ice {
+:deep().ice {
   background: #58c8e0;
   color: #0107FF;
 }
 
-.fight {
+:deep().fighting {
   background: #a05038;
   color: #F9FF01;
 }
 
-.normal {
+:deep().normal {
   background: #a8a090;
   color: #0900FF;
 }
 
-.grass {
+:deep().grass {
   background: #78c850;
   color: #0300FF;
 }
 
-.psychic {
+:deep().psychic {
   background: #f870a0;
   color: #0400FF;
 }
 
-.rock {
+:deep().rock {
   background: #b8a058;
   color: #0800FF;
 }
 
-.dark {
+:deep().dark {
   background: #7a5848;
   color: #00FFFD;
 }
 
-.ground {
+:deep().ground {
   background: #e9d6a4;
   color: #0102FF;
 }
 
-.poison {
+:deep().poison {
   background: #b058a0;
   color: #FEFF00;
 }
 
-.flying {
+:deep().flying {
   background: #98a8f0;
   color: #1001FF;
 }
