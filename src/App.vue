@@ -4,7 +4,7 @@
 import SearchView from './views/SearchView.vue';
 import PokemonCard from './components/PokemonCard.vue';
 import { ref, computed } from 'vue'
-import TypeSearchView from './views/TypeSearchView.vue';
+//import TypeSearchView from './views/TypeSearchView.vue';
 
 defineProps({
   msg: {
