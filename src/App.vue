@@ -18,7 +18,7 @@ defineProps({
 const objectFromChild=ref();
 
 
-function RecuperaDelHijo(data){
+function RecoversFromSon(data){
   objectFromChild.value=data;
 }
 
@@ -38,16 +38,16 @@ const miObject = computed(() => {
     </header>
     <main>
       <section id="randomView">
-        <RandomView />
+        <RandomView @send-datos="RecoversFromSon"/>
       </section>
       <section id="searchView">
-        <SearchView @send-datos="RecuperaDelHijo"></SearchView>  
+        <SearchView @send-datos="RecoversFromSon"></SearchView>  
       </section>       
       <section id="pokemonCard">
         <PokemonCard :pokemon="miObject" />
       </section>  
       <section id="searchView2">
-        <TypeSearchView @send-datos="RecuperaDelHijo"/>
+        <TypeSearchView @send-datos="RecoversFromSon"/>
       </section>  
     </main>
   </body>
@@ -77,11 +77,13 @@ const miObject = computed(() => {
   }
 
   #randomView {
-        height: 25vh;
+        height: 15vh;
         width: 80vw;
         background-color: deepskyblue;
         margin: auto;
         border-radius: 24px;
+        display: flex;
+        justify-content: space-around;
   }
 
   #pokemonCard {
@@ -90,5 +92,7 @@ const miObject = computed(() => {
         background-color: #ecc139;
         margin: auto;
         border-radius: 24px;
+        display: flex;
+        justify-content: center;
   }
 </style>
