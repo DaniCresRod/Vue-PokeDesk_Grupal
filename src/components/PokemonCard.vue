@@ -22,7 +22,7 @@ const props = defineProps({
 
 let pokemonImg = computed(() => {
   if (props.pokemon.sprites.value !== null) {
-    return props.pokemon.sprites.front_default
+    return props.pokemon.sprites.other['official-artwork'].front_default;
   } else {
     return null
   }
