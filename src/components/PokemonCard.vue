@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onUpdated, defineProps } from 'vue'
+import { computed, defineProps } from 'vue'
 
 const props = defineProps({
   cardClass: {
