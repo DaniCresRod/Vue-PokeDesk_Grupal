@@ -42,12 +42,12 @@ const miObject = computed(() => {
       </section>
       <section id="searchView">
         <SearchView @send-datos="RecuperaDelHijo"></SearchView>  
+      </section>       
+      <section id="pokemonCard">
+        <PokemonCard :pokemon="miObject" />
       </section>  
       <section id="searchView2">
         <TypeSearchView @send-datos="RecuperaDelHijo"/>
-      </section>  
-      <section id="pokemonCard">
-        <PokemonCard :pokemon="miObject" />
       </section>  
     </main>
   </body>
