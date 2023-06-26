@@ -1,71 +1,30 @@
 <script setup>
-import { onBeforeMount } from 'vue';
+  
+  import pokemonSearch from "../assets/services/ConnectApi"
+  import { ref, onBeforeMount } from "vue";
 
-  function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
-}
+  let data = ref();
+  let pokemons = ref([]);
 
-for (let i = 0; i < 10; i++){
-    onBeforeMount(() => {
-        const ramdom = getRandomInt(1, 500)
-        fetchData(ramdom)
-    })
-    
-}
+  onBeforeMount(()=>{for (let i = 0; i < 10; i++){
+    const random = Math.floor(Math.random() * 1010)+1;
+    console.log(random);
+    data.value = pokemonSearch(random);
+    (data.value).then(x => (pokemons.value).push(x));
+    (data.value).then(x=>console.log(x)); }})
 
-const fetchData = async (id) => {
-    try {
-        console.log(id)
-        
-        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-        const data = await res.json()
-        
-        console.log(data)
-
-        const pokemon = {
-            id: id,
-            img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`,
-            imgJuego: data.sprites.front_default,
-            imgCvg: data.sprites.other.dream_world.front_default,
-            nombre: data.name,
-            experiencia: data.base_experience,
-            hp: data.stats[0].base_stat,
-            ataque: data.stats[1].base_stat,
-            defensa: data.stats[2].base_stat,
-            especial: data.stats[3].base_stat,
-        }
-
-        pintarCard(pokemon)
-    
-    } catch (error) {
-        //console.log(error)
-    }
-} 
-
-const pintarCard = pokemon => {
-    const flex = document.querySelector('.flex')
-    const template = document.querySelector('card').value
-    const clone = template.cloneNode(true)
-    const fragment = document.createDocumentFragment()
-
-    clone.querySelector('.card-body-img').setAttribute('src', pokemon.imgCvg)
-    // clone.querySelector('.card-body-img').setAttribute('src', pokemon.imgJuego)
-    clone.querySelector('.card-body-title').innerHTML = `${pokemon.nombre} <span> #${pokemon.id}</span>`
-    fragment.appendChild(clone)
-    flex.appendChild(fragment)
-}
 </script>
 
 <main class="flex"></main>
 
-<template id="card">
-    <article class="card">
+<template id="card" v-if="pokemons">
+    <article class="card" v-for="(item, id) in pokemons" :key="id">
         <img src="../assets/images/bg-pattern-card.svg" alt="imagen header card" class="card-header">
         <div class="card-body">
-            <img src="../assets/images/image-victor.svg" alt="imagen de vitoko" class="card-body-img">
+            <img :src="item.sprites.other['official-artwork'].front_default" :alt="item.name" class="card-body-img">
             <h1 class="card-body-title">
-                Vitoko
-                <span>23</span>
+                {{ item.name }}
+                <span>{{ item.id }}</span>
             </h1>
         </div>
     </article>
@@ -422,24 +381,14 @@ const pintarCard = pokemon => {
     display: none;
   }
 
+
 /* Own styles*/
 
 :root {
-  --dark-cyan: hsl(185, 75%, 39%);
+  --dark-cyan: hsl(189, 95%, 47%);
   --very-dark-desaturated: hsl(229, 23%, 23%);
   --dark-grayish-blue: hsl(227, 10%, 46%);
   --dark-gray: hsl(0, 0%, 59%);
-}
-
-main {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  font-size: 62.5%;
-}
-
-*, *:before, *:after {
-  -webkit-box-sizing: inherit;
-          box-sizing: inherit;
 }
 
 template {
@@ -448,25 +397,31 @@ template {
   background-image: url("../images/bg-pattern-top.svg"), url("../images/bg-pattern-bottom.svg");
   background-repeat: no-repeat, no-repeat;
   background-position: right 50vw bottom 50vh, left 50vw top 50vh;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 62.5%;
 }
 
 .flex {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  flex-wrap: wrap;
+  gap: .3rem;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 100vh;
+  height: 40vh;
 }
 
 .card {
   background-color: white;
-  width: 326px;
+  width: 130px;
   border-radius: 100vmax;
+  border: 0.2em solid #0AC;
   padding: .25rem;
   overflow: hidden;
   -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
@@ -493,8 +448,8 @@ template {
 }
 
 .card-body-img {
-  width: 200px;
-  height: 200px;
+  width: 50px;
+  height: 50px;
   border: 5px solid white;
   border-radius: 50%;
   margin-top: calc(-48px - 5px);
@@ -503,38 +458,13 @@ template {
 
 .card-body-title {
   margin-top: 2rem;
-  font-size: 1.8rem;
+  font-size: 1rem;
   text-transform: capitalize;
 }
 
 .card-body-title span {
   color: var(--dark-gray);
   font-weight: 400;
-}
-
-.card-body-text {
-  color: var(--dark-gray);
-  font-size: 1.6rem;
-  margin-top: 0;
-  margin-bottom: 2rem;
-}
-
-.card-footer {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-}
-
-.card-footer-social {
-  text-align: center;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
-
-.card-footer-social p {
-  letter-spacing: 1px;
 }
 
 </style>
