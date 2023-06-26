@@ -33,7 +33,8 @@ let pokemonImg = computed(() => {
 </script>
 
 <template v-if="pokemon">
-  <div :class="pokemon.types[0].type['name']">
+  <!-- <div :class="pokemon.types[0].type['name']"> -->
+  <div>
     <h2>{{ pokemon.id }}</h2>
     <h2>{{ pokemon.name }}</h2>
     <img v-if="pokemonImg" :src="pokemonImg" />

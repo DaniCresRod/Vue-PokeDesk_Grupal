@@ -4,6 +4,7 @@
 import SearchView from './views/SearchView.vue';
 import PokemonCard from './components/PokemonCard.vue';
 import { ref, computed } from 'vue'
+import TypeSearchView from './views/TypeSearchView.vue';
 
 defineProps({
   msg: {
@@ -27,31 +28,26 @@ const miObject = computed(() => {
 
 });
 
-
 </script>
 
 <template>
-
-  <SearchView @send-datos="RecuperaDelHijo"></SearchView>  
-  <PokemonCard :pokemon="miObject" />
-  <!-- <HelloWorld :msg = "miObject" ></HelloWorld> -->
-
-  <!--<p>{{objectFromChild}}</p>
-
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />-->
+  <body>
+    <header>
+      <RouterLink to="/"><img id="logo" src="./assets/logoPokemon.png" alt="Logo"></RouterLink>
+      <RouterView />
+    </header>
+    <main>
+      <section id="randomView">
+        <RandomView />
+      </section>
+      <section id="searchView">
+        <SearchView @send-datos="RecuperaDelHijo"></SearchView>  
+      </section>  
+      <section id="pokemonCard">
+        <PokemonCard :pokemon="miObject" />
+      </section>  
+    </main>
+  </body>
 </template>
 
 <style scoped>
