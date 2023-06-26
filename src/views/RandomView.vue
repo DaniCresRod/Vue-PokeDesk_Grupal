@@ -5,16 +5,21 @@
 
   let data = ref();
   let pokemons = ref([]);
+  let randoms = [];
   let emit = defineEmits(['sendDatos']);
-  
-  onBeforeMount(()=>{for (let i = 0; i < 10; i++){
+
+  onBeforeMount(()=>{while (randoms.length<10){
     const random = Math.floor(Math.random() * 1010) + 1;
-    data.value = pokemonSearch(random);
-    (data.value).then(x => (pokemons.value).push(x));
-    console.log(data.value);
+    let existe = randoms.filter((r) => r == random);
+    if (existe.length == 0) {
+      randoms.push(random);
+      data.value = pokemonSearch(random);
+      (data.value).then(x => (pokemons.value).push(x));
+      console.log(data.value);
+    };
   }})
 
-  function SendData(item){
+  function SendData(item) {
     emit('sendDatos', item);
   }
   
