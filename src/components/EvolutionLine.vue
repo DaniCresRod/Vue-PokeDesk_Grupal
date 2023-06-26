@@ -172,8 +172,7 @@ const	ftCapitalize = (word) =>
 </script>
 
 <template>
-	<h1>Testing species</h1>
-	<h2>{{ testH2 }}</h2>
+	<h1>Evolution Line</h1>
 	<section id="evolution-line">
 		<section v-if="baseFormImg" class="evolution">
 			<img :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${baseFormId}.png`" class="poke-img"/>
