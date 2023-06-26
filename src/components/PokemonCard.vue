@@ -1,114 +1,188 @@
 <script setup>
+import { computed } from 'vue'
 
-defineProps({            
-        cardClass: {
-            type: String
-        },
-        url: {
-            type: String
-        }
-    });
-    
+const props = defineProps({
+  cardClass: {
+    type: String
+  },
+  pokemon: {
+    type: Object,
+    // eslint-disable-next-line vue/require-valid-default-prop
+    default: {
+      id: 0,
+      name: 'No pokemon Selected',
+      sprites: {
+        front_default: ''
+      }
+    }
+  }
+})
+
+
+
+// let pokemonImg = computed(() => {
+//   if (props.pokemon.sprites.value !== null) {
+//     return props.pokemon.sprites.other['official-artwork'].front_default;
+//   } else {
+//     return null
+//   }
+// })
+
+let pokemonImg = computed(() => {
+  if (props.pokemon.sprites && props.pokemon.sprites.other && props.pokemon.sprites.other['official-artwork'] && props.pokemon.sprites.other['official-artwork'].front_default) {
+    return props.pokemon.sprites.other['official-artwork'].front_default;
+  } else {
+    return null;
+  }
+});
+
+
+// let pokemonType = computed(() => {
+//   if (props.pokemon.types !== null){
+//     return props.pokemon.types[0].type['name']
+//   } else {
+//     return null
+//   }
+// })
+
+let pokemonType = computed(() => {
+  if (props.pokemon.types && props.pokemon.types.length > 0) {
+    return props.pokemon.types[0].type['name'];
+  } else {
+    return null;
+  }
+});
+
+
+// onUpdated(() => {
+//   pokemonType.value = props.pokemon.types[0].type['name'];
+//   return pokemonType.value
+// })
+// onUpdated(() => {
+//   pokemonImg.value = props.pokemon.sprites.front_default
+//   console.log(pokemonImg.value)
+// })
 </script>
 
-
-<template>
-    <div :class="cardClass">
-        <h3> {{  }} </h3>
-        <h2> {{  }} </h2>
-        <img :src="imgUrl"> <!-- pokemon.sprites.other.official-artwork.front-default -->
-        <p>{{  }}</p>
-        <p>{{  }}</p>
-    </div>
-
-    
+<template v-if="pokemon">
+  <!-- <div :class="pokemon.types[0].type['name']"> -->
+  <div :class="pokemonType">
+    <h2>{{ pokemon.id }}</h2>
+    <h2>{{ pokemon.name }}</h2>
+    <img v-if="pokemonImg" :src="pokemonImg" />
+    <!-- pokemon.sprites.other.official-artwork.front-default -->
+    <p v-for="(eachType, index) in pokemon.types" :key="index">{{ eachType.type.name }}</p>
+    <!-- <p v-if="pokemon">{{ pokemon.types[1].type.name }}</p> -->
+  </div>
 </template>
 
-
 <style scoped>
-    div {
-        background: rgb(109, 102, 102);
-        width: 70%;
-        border-radius: 5px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    div img {
-        width: 250px;
-    }
-    
-    .fire{
-        background-color: #f05030;
-    }
+div {
+  background: rgb(41, 41, 41);
+  width: 300px;
+  height: 450px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid #fff;
+  box-shadow: 10px 10px 12px 10px rgba(0, 0, 0, 0.3);
+}
+div img {
+  width: 250px;
+}
 
-    .water{
-        background-color: #3899f8;
-    }
+p {
+  margin: 0;
+}
 
-    .electric{
-        background: #f8d030;
-    }
+.fire {
+  background-color: #f05030;
+  color: #F3FF01;
+}
 
-    .steel {
-        background: #a8a8c0;
-    }
+.water {
+  background-color: #3899f8;
+  color: #FEFF00;
+}
 
-    .bug {
-        background: #a8b820;
-    }
+.electric {
+  background: #f8d030;
+  color: #000AFF;
+}
 
-    .dragon {
-        background: #7860e0; 
-    }
+.steel {
+  background: #a8a8c0;
+  color: #0400FF;
+}
 
-    .ghost {
-        background: #6060b0;
-    }
+.bug {
+  background: #a8b820;
+  color: #0400FF;
+}
 
-    .fairy {
-        background: #e79fe7;
-    }
+.dragon {
+  background: #7860e0;
+  color: #FFFC00;
+}
 
-    .ice {
-        background: #58c8e0;
-    }
+.ghost {
+  background: #6060b0;
+  color: #FFFC00;
+}
 
-    .fight {
-        background: #a05038;
-    }
+.fairy {
+  background: #e79fe7;
+  color: #0F00FF;
+}
 
-    .normal {
-        background: #a8a090;
-    }
+.ice {
+  background: #58c8e0;
+  color: #0400FF;
+}
 
-    .grass {
-        background: #78c850;
-    }
+.fighting {
+  background: #a05038;
+  color: #F9FF01;
+}
 
-    .psychic {
-        background: #f870a0;
-    }
+.normal {
+  background: #a8a090;
+  color: #0400FF;
+}
 
-    .rock {
-        background: #b8a058;
-    }
+.grass {
+  background: #78c850;
+  color: #0102FF;
+}
 
-    .dark {
-        background: #7a5848;
-    }
+.psychic {
+  background: #f870a0;
+  color: #1200FF;
+}
 
-    .ground {
-        background: #e9d6a4;
-    }
+.rock {
+  background: #b8a058;
+  color: #0400FF;
+}
 
-    .poison {
-        background: #b058a0;
-    }
+.dark {
+  background: #7a5848;
+  color: #E8FF01;
+}
 
-    .flying {
-        background: #98a8f0;
-    }
+.ground {
+  background: #e9d6a4;
+  color: #0D00FF;
+}
 
-    
+.poison {
+  background: #b058a0;
+  color: #FFFF00;
+}
+
+.flying {
+  background: #98a8f0;
+  color: #0115FF;
+}
 </style>

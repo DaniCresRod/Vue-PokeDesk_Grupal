@@ -1,3 +1,44 @@
+# Pokemon Project
+
+## Project context
+
+Project about Api consumption in a Vue.js environment. 
+
+## Project description
+
+We've developed one of the most popular online projects about API's use: a Pokemon Pokedex.
+
+### Minimum requirements
+
+- Pokemon cards with a background color dependant on its type.
+- Pokemon details.
+
+### Extra requirements
+
+- Category filter.
+- Search bar.
+
+## Sprint schedule
+
+    Week 1: 
+        - Team assembling (Jira, flow chart, mood board, benchmark).
+        - Basic layout and components.
+        - Extra: Search bar.
+
+    Week 2:
+        - Component assembling.
+        - Fix & hotfix.
+        - Extra: Category filter.
+
+# Team
+
+- Carmen Borja (carmenb2020)
+- Luis Álvarez (luisanlvarez246)
+- Leolo Flórez (LeoloFlrz)
+- Víctor Tejedor (victorteje)
+- Daniel Crespo (DaniCresRod)
+
+
 # .
 
 This template should help get you started developing with Vue 3 in Vite.

@@ -1,47 +1,61 @@
 <script setup>
-import pokemonSearch from "../services/ConnectApi"
+    import pokemonSearch from "../services/ConnectApi"
+    import { ref, onMounted } from "vue";
 
-function ChangeButton(){
-    
-    if(document.querySelector("#searchBar input").value.length>0){
-        document.querySelector("#searchBar button:nth-of-type(1)").textContent="Find It!"        
-    }
-    else{
-        document.querySelector("#searchBar button:nth-of-type(1)").textContent="Find whatever!"
-    }    
-}
+    const data = ref();
 
-function Search(){
-    let searchValue = document.querySelector("#searchBar input").value;
-    if(searchValue.length==0){
-        searchValue=Math.floor(Math.random()*1281)+1
-        if(searchValue>1010){
-            searchValue+=8990;
+    document.addEventListener("keypress", (event)=>{
+        if(event.key=="Enter"){
+            event.preventDefault();
         }
-    }else if(isNaN(searchValue))searchValue=searchValue.toLowerCase();
-    
-    //let respuesta = 
-    pokemonSearch(searchValue);
+        
+    })
 
-    //console.log(respuesta);
-    document.querySelector("#searchBar input").value="";
-}
+    function ChangeButton(){
+        
+        if(document.querySelector("#searchBar input").value.length>0){
+            document.querySelector("#searchBar button:nth-of-type(1)").textContent="Find It!" ;                   
+        }
+        else{
+            document.querySelector("#searchBar button:nth-of-type(1)").textContent="Find Random!";
+        }    
+    }
 
+    let emit=defineEmits(['sendDatos']);
 
+    function Search(){
+        let searchValue = document.querySelector("#searchBar input").value;
+        if(searchValue.length==0){
+            searchValue=Math.floor(Math.random()*1010)+1
+            
+        }else if(isNaN(searchValue))searchValue=searchValue.toLowerCase();    
+        
+        data.value = pokemonSearch(searchValue);     
+        
+        (data.value).then( x=> {
+            if(x.id!==0)emit('sendDatos', x)
+        }); 
 
+        document.querySelector("#searchBar input").value="";
+        document.querySelector("#searchBar button:nth-of-type(1)").textContent="Find Random!";
+    }
+
+    onMounted(() => {
+        Search();
+    })
 
 </script>
 
 <template>
 
     <section id="searchBar">
+
         <h3>Look up your Pokemon name or number</h3>
         <form>
-            <input type="text" placeholder="Busca un pokemon!" autocomplete="on" size="40" @input="ChangeButton()">
-            <button type="button" autofocus @click="Search()">Find whatever!</button>
+            <input type="text" placeholder="Find a Pokemon!" autocomplete="on" size="40" @input="ChangeButton()">
+            <button type="button" @click="Search()">Find Random!</button>
             <button type="reset">Delete</button>
         </form>
-        
     </section>
 
 </template>
@@ -54,7 +68,7 @@ function Search(){
     margin:0 auto;
     width: 80vw;
     font-family: 'Comic Neue', cursive;
-    border-radius: 5px;
+    border-radius: 24px;
     background-color: #3951ED;
 }
 
@@ -63,7 +77,7 @@ h3{
     font-weight: bold;
     margin-left: 2vw;
     font-size: x-large;
-
+    text-align: center;
 }
 
 form{
@@ -74,7 +88,6 @@ form{
     align-items: center;
     justify-content: center;
     padding: 1vh 1vw;    
-    
     max-width: 100%;
 }
 
@@ -84,7 +97,6 @@ input{
     padding: 1vh 1vw;
     font-family: 'Comic Neue', cursive; 
     background: #FFD857;
-
     max-width: 100%;    
 }
 
@@ -97,15 +109,12 @@ button{
     font-family: 'Comic Neue', cursive;
     font-weight: bold;   
     overflow-wrap: break-word; 
-    
     min-width: 15vw;
 }
 
 button:hover{
     background: #FFD857;
     transform: scale(1.1);
-
 }
-
 
 </style>
