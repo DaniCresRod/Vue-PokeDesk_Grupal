@@ -18,8 +18,6 @@ const props = defineProps({
   }
 })
 
-
-
 // let pokemonImg = computed(() => {
 //   if (props.pokemon.sprites.value !== null) {
 //     return props.pokemon.sprites.other['official-artwork'].front_default;
@@ -29,13 +27,17 @@ const props = defineProps({
 // })
 
 let pokemonImg = computed(() => {
-  if (props.pokemon.sprites && props.pokemon.sprites.other && props.pokemon.sprites.other['official-artwork'] && props.pokemon.sprites.other['official-artwork'].front_default) {
-    return props.pokemon.sprites.other['official-artwork'].front_default;
+  if (
+    props.pokemon.sprites &&
+    props.pokemon.sprites.other &&
+    props.pokemon.sprites.other['official-artwork'] &&
+    props.pokemon.sprites.other['official-artwork'].front_default
+  ) {
+    return props.pokemon.sprites.other['official-artwork'].front_default
   } else {
-    return null;
+    return null
   }
-});
-
+})
 
 // let pokemonType = computed(() => {
 //   if (props.pokemon.types !== null){
@@ -47,12 +49,11 @@ let pokemonImg = computed(() => {
 
 let pokemonType = computed(() => {
   if (props.pokemon.types && props.pokemon.types.length > 0) {
-    return props.pokemon.types[0].type['name'];
+    return props.pokemon.types[0].type['name']
   } else {
-    return null;
+    return null
   }
-});
-
+})
 
 // onUpdated(() => {
 //   pokemonType.value = props.pokemon.types[0].type['name'];
@@ -77,112 +78,128 @@ let pokemonType = computed(() => {
 </template>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
+
 div {
   background: rgb(41, 41, 41);
   width: 300px;
   height: 450px;
   border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-rows: 3;
   border: 2px solid #fff;
   box-shadow: 10px 10px 12px 10px rgba(0, 0, 0, 0.3);
+  font-family: 'Comic Neue', cursive;
+  font-weight: 700;
+  text-transform: capitalize;
 }
+
+div h2 {
+  grid-row: 1;
+  margin: auto auto;
+}
+
 div img {
   width: 250px;
+  grid-row-start: 2;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  margin: auto auto;
 }
 
 p {
-  margin: 0;
+  margin: auto auto;
+  font-weight: 700;
+  grid-row: 3;
 }
 
 .fire {
   background-color: #f05030;
-  color: #F3FF01;
+  color: #f3ff01;
 }
 
 .water {
   background-color: #3899f8;
-  color: #FEFF00;
+  color: #feff00;
 }
 
 .electric {
   background: #f8d030;
-  color: #000AFF;
+  color: #000aff;
 }
 
 .steel {
   background: #a8a8c0;
-  color: #0400FF;
+  color: #0400ff;
 }
 
 .bug {
   background: #a8b820;
-  color: #0400FF;
+  color: #0400ff;
 }
 
 .dragon {
   background: #7860e0;
-  color: #FFFC00;
+  color: #fffc00;
 }
 
 .ghost {
   background: #6060b0;
-  color: #FFFC00;
+  color: #fffc00;
 }
 
 .fairy {
   background: #e79fe7;
-  color: #0F00FF;
+  color: #0f00ff;
 }
 
 .ice {
   background: #58c8e0;
-  color: #0400FF;
+  color: #0400ff;
 }
 
 .fighting {
   background: #a05038;
-  color: #F9FF01;
+  color: #f9ff01;
 }
 
 .normal {
   background: #a8a090;
-  color: #0400FF;
+  color: #0400ff;
 }
 
 .grass {
   background: #78c850;
-  color: #0102FF;
+  color: #0102ff;
 }
 
 .psychic {
   background: #f870a0;
-  color: #1200FF;
+  color: #1200ff;
 }
 
 .rock {
   background: #b8a058;
-  color: #0400FF;
+  color: #0400ff;
 }
 
 .dark {
   background: #7a5848;
-  color: #E8FF01;
+  color: #e8ff01;
 }
 
 .ground {
   background: #e9d6a4;
-  color: #0D00FF;
+  color: #0d00ff;
 }
 
 .poison {
   background: #b058a0;
-  color: #FFFF00;
+  color: #ffff00;
 }
 
 .flying {
   background: #98a8f0;
-  color: #0115FF;
+  color: #0115ff;
 }
 </style>
