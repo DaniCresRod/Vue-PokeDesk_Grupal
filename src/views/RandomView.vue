@@ -8,16 +8,14 @@
   let emit = defineEmits(['sendDatos']);
   
   onBeforeMount(()=>{for (let i = 0; i < 10; i++){
-    const random = Math.floor(Math.random() * 1010)+1;
-    console.log(random);
+    const random = Math.floor(Math.random() * 1010) + 1;
     data.value = pokemonSearch(random);
     (data.value).then(x => (pokemons.value).push(x));
-  }
-  })
+    console.log(data.value);
+  }})
 
   function SendData(item){
     emit('sendDatos', item);
-    console.log(item)
   }
   
 </script>
@@ -42,13 +40,6 @@
   --dark-gray: hsl(0, 0%, 59%);
 }
 
-template{
-  background-color: var(--dark-cyan);
-  background-image: url("../assets/images/bg-pattern-top.svg"), url("../images/bg-pattern-bottom.svg");
-  background-repeat: no-repeat, no-repeat;
-  background-position: right 50vw bottom 50vh, left 50vw top 50vh;
-}
-
 .flex {
   font-family: 'Comic Neue', cursive;
   display: -webkit-box;
@@ -57,7 +48,7 @@ template{
   flex-direction: row;
   flex-wrap: nowrap;
   -webkit-box-orient: horizontal;
-  gap: .1rem;
+  gap:.1rem;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -103,18 +94,4 @@ template{
   margin-top: calc(-48px - 5px);
   background-color: white;
 }
-
-.card-body-title {
-  margin-top: .3rem;
-  padding:.2rem;
-  font-size: .5rem;
-  font-weight: 500;
-  text-transform: capitalize;
-}
-
-.card-body-title span {
-  color: var(--dark-gray);
-  font-weight: 400;
-}
-
 </style>

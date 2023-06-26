@@ -38,7 +38,7 @@ const miObject = computed(() => {
     </header>
     <main>
       <section id="randomView">
-        <RandomView />
+        <RandomView @send-datos="RecuperaDelHijo"/>
       </section>
       <section id="searchView">
         <SearchView @send-datos="RecuperaDelHijo"></SearchView>  
