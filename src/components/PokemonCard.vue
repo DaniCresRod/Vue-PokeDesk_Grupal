@@ -122,15 +122,15 @@ section {
   justify-content: center;
   align-items: center;
   gap: 15px;
-  padding-bottom: 20px;
+  padding-bottom: 30px;
   border-radius: 10px;
+  margin-bottom: 10px;
 }
 
 p {
   display: inline-block;
   padding: 5px 10px;
   border-radius: 5px;
-  cursor: pointer;
 }
 
 
