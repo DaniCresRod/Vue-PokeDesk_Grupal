@@ -1,41 +1,41 @@
 # Pokemon Project
 
-## Project Context
+## Project context
 
 Project about Api consumption in a Vue.js environment. 
 
-## Project Description
+## Project description
 
-We've devoloped one of the most popular online projects about API's use: a Pokemon PokeDesk
+We've developed one of the most popular online projects about API's use: a Pokemon Pokedex.
 
-### Minimun requirements
+### Minimum requirements
 
-- Pokemon Cards with a background color dependant of its type
-- Pokemon Details
+- Pokemon cards with a background color dependant on its type.
+- Pokemon details.
 
-### Extra Requirements
+### Extra requirements
 
-- Cathegory filter
-- Search Bar
+- Category filter.
+- Search bar.
 
 ## Sprint schedule
 
     Week 1: 
-        - Team assembling (Jira, flow chart, mood board, benchmarkt)
-        - Basic layout and components
-        - Extra: Search Bar
+        - Team assembling (Jira, flow chart, mood board, benchmark).
+        - Basic layout and components.
+        - Extra: Search bar.
 
     Week 2:
-        - Component assembling
-        - Fix & hotfix
-        - Extra: Cathegory filter
+        - Component assembling.
+        - Fix & hotfix.
+        - Extra: Category filter.
 
-# Team Crew
+# Team
 
 - Carmen Borja (carmenb2020)
 - Luis Álvarez (luisanlvarez246)
 - Leolo Flórez (LeoloFlrz)
-- Victor Tejedor (victorteje)
+- Víctor Tejedor (victorteje)
 - Daniel Crespo (DaniCresRod)
 
 
