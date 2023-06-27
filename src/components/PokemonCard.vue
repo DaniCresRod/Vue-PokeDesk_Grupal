@@ -46,6 +46,14 @@ let pokemonImg = computed(() => {
 //     return null
 //   }
 // })
+let pokemonAbilities = computed(() => {
+  if (props.pokemon.abilities && props.pokemon.abilities.length > 0) {
+    return props.pokemon.abilities[0].ability.name
+  } else {
+    return null
+  }
+})
+
 
 let pokemonType = computed(() => {
   if (props.pokemon.types && props.pokemon.types.length > 0) {
@@ -75,6 +83,8 @@ let pokemonType = computed(() => {
     <section>
       <p v-for="(eachType, index) in pokemon.types" :class="eachType.type.name" :key="index">{{ eachType.type.name }}</p>
     </section>
+      <!-- <p v-for="(eachAbility, i) in pokemon.abilities" :key="i">{{ pokemonAbilities }}</p> -->
+      <p id="pokeAbility">Ability:  {{ pokemonAbilities }}</p>
     <!-- <p v-if="pokemon">{{ pokemon.types[1].type.name }}</p> -->
   </div>
 </template>
@@ -122,9 +132,9 @@ section {
   justify-content: center;
   align-items: center;
   gap: 15px;
-  padding-bottom: 30px;
+  /* padding-bottom: 30px; */
   border-radius: 10px;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 
 p {
@@ -139,6 +149,10 @@ p {
   align-items: center;
 }
 
+#pokeAbility {
+  border: 2px solid #fff;
+  margin-bottom: 50px;
+}
 
 .fire {
   background-color: #f05030;

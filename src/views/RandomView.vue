@@ -64,6 +64,9 @@
 }
 
 .card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: white;
   width: 130px;
   border-radius: 100vmax;
@@ -96,7 +99,7 @@
   padding:3rem;
   border: 5px solid white;
   border-radius: 50%;
-  margin-top: calc(-48px - 5px);
+  /* margin-top: calc(-48px - 5px); */
   background-color: white;
 }
 </style>
