@@ -44,6 +44,7 @@ li{
     text-transform: capitalize;
     font-weight: bold;
     border:2px solid white;
+    cursor: pointer;
 }
 
 </style>
