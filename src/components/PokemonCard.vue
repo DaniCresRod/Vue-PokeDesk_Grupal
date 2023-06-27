@@ -57,8 +57,14 @@ let pokemonWeight = computed(() => {
   } else {
     return null
   }
+})
 
-  
+let pokemonID = computed(() => {
+  if (props.pokemon.id && props.pokemon.id > 0) {
+    return props.pokemon.id
+  } else {
+    return null
+  }
 })
 </script>
 
@@ -70,7 +76,7 @@ let pokemonWeight = computed(() => {
       @mouseover="cardHover = true"
       @mouseout="cardHover = false"
     >
-      <h2 class="idName">{{ pokemon.id }} {{ pokemon.name }}</h2>
+      <h2 class="idName">{{ pokemonID }} {{ pokemon.name }}</h2>
       <img v-if="pokemonImg" :src="pokemonImg" />
       <section class="typeSection">
         <p v-for="(eachType, index) in pokemon.types" :class="eachType.type.name" :key="index">

@@ -23,7 +23,7 @@ function RecoversFromSon(data){
   objectFromChild.value=data;
 }
 
-const miObject = computed(() => {
+const myObject = computed(() => {
     
   return objectFromChild.value;
 
@@ -45,8 +45,8 @@ const miObject = computed(() => {
         <SearchView @send-datos="RecoversFromSon"></SearchView>  
       </section>       
       <section id="pokemonCard">
-        <PokemonCard :pokemon="miObject" />
-		<Evolution :data="miObject" @response="(data) => objectFromChild = data"/>
+        <PokemonCard :pokemon="myObject" />
+		<Evolution :data="myObject" @response="(data) => objectFromChild = data"/>
       </section>
       <section id="searchView2">
         <TypeSearchView @send-datos="RecoversFromSon"/>
