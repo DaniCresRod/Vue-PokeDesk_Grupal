@@ -80,13 +80,13 @@
     background-color: #3951ED;
     display: flex;
     align-items: center;
+    justify-content: space-around;
 }
 
 h3{
     color:white;
     font-weight: bold;
-    font-size: x-large;
-    text-align: center;
+    font-size: x-large
 }
 
 #divNotFound{
@@ -100,7 +100,6 @@ h3{
 
 form{
     width: fit-content;
-    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -110,7 +109,6 @@ form{
 }
 
 input{
-    margin: auto 4vw;
     border-radius: 5px;
     padding: 1vh 1vw;
     font-family: 'Comic Neue', cursive; 
