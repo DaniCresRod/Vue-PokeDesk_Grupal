@@ -13,8 +13,8 @@ const props = defineProps(
 
 const emit = defineEmits(['response']);
 
-const	getData = new GetData();
-let 	name = ref();
+const	newData = new GetData();
+let 	givenName = ref();
 let 	speciesData = ref();
 let 	evolutionData = ref();
 let		baseForm = ref({
@@ -49,7 +49,6 @@ const	getId = (url) =>
 
 const	setToBlank = () =>
 {
-	console.log("setting to blank")
 	baseForm.value.base = 0;
 	baseForm.value.img = "";
 	baseForm.value.id = ""
@@ -63,11 +62,8 @@ const	setToBlank = () =>
 
 const	ftUpdate = async(evolutionUrl) =>
 {
-	console.log("updating");
-	evolutionData.value = await getData.getData(evolutionUrl);
+	evolutionData.value = await newData.getData(evolutionUrl);
 	baseForm.value.base = evolutionData.value.data.chain.species.name;
-	console.log(baseForm.value.base);
-	console.log(evolutionData.value.data.chain.evolves_to.length);
 	if (evolutionData.value.data.chain.evolves_to.length !== 0)
 	{
 		evLine.value = 1;
@@ -88,25 +84,21 @@ const	ftUpdate = async(evolutionUrl) =>
 		evTwo.value.img = "";
 		evLine.value = 0;
 	}
-	console.log(baseForm.value.base);
-	console.log(evOne.value.base);
-	console.log(evTwo.value.base);
-	if (baseForm.value.base === name.value)
+	if (baseForm.value.base === givenName.value)
 	{
 		baseForm.value.base = 0;
 		baseForm.value.img = "";
 	}
-	if (evOne.value.base === name.value)
+	if (evOne.value.base === givenName.value)
 	{
 		evOne.value.base = 0;
 		evOne.value.img = "";
 	}
-	if (evTwo.value.base === name.value)
+	if (evTwo.value.base === givenName.value)
 	{
 		evTwo.value.base = 0;
 		evTwo.value.img = "";
 	}
-
 		
 	if (baseForm.value.base !== 0)
 	{
@@ -130,10 +122,8 @@ const	ftUpdate = async(evolutionUrl) =>
 
 onUpdated(async() =>
 {
-	name.value = props.data.name;
-	console.log(name.value);
-	speciesData.value = await getData.getData(`https://pokeapi.co/api/v2/pokemon-species/${name.value}`);
-	console.log(speciesData.value);
+	givenName.value = props.data.name;
+	speciesData.value = await newData.getData(`https://pokeapi.co/api/v2/pokemon-species/${givenName.value}`);
 	if (typeof speciesData.value !== "string")
 	{
 		ftUpdate(speciesData.value.data.evolution_chain.url);
@@ -156,15 +146,14 @@ const sendData = async(id) =>
 {
 	let	data = ref();
 	
-	data.value = await getData.getData(`https://pokeapi.co/api/v2/pokemon/${id}`);
-	console.log(id, data.value.data);
+	data.value = await newData.getData(`https://pokeapi.co/api/v2/pokemon/${id}`);
 	emit('response', data.value.data);
 }
 	
 </script>
 
 <template>
-	<h1 v-if="evLine">Evolution Line</h1>
+	<h1 v-if="evLine" class="evolution-header">Evolution Line</h1>
 	<section id="evolution-line">
 		<section v-if="baseForm.img" @click="sendData(baseForm.id)" class="evolution">
 			<img :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${baseForm.id}.png`" class="poke-img"/>
@@ -182,13 +171,20 @@ const sendData = async(id) =>
 </template>
 
 <style scoped>
+
+	@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
 	
+	.evolution-header
+	{
+		font-family: 'Comic Neue';
+	}
 	#evolution-line
 	{
 		display: flex;
     	flex-direction: row;
     	justify-content: space-evenly;
     	width: 100%;
+		font-family: 'Comic Neue';
 	}
 	.evolution
 	{
