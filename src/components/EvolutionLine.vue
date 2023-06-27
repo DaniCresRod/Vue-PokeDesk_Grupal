@@ -1,5 +1,5 @@
 <script setup>
-import { onBeforeUpdate, onUpdated, ref, watch } from 'vue'
+import { onUpdated, ref} from 'vue'
 import GetData from '../services/getEvData.js';
 
 const props = defineProps(
@@ -14,21 +14,27 @@ const props = defineProps(
 const emit = defineEmits(['response']);
 
 const	getData = new GetData();
+let 	name = ref();
 let 	speciesData = ref();
 let 	evolutionData = ref();
-let		baseForm;
-let		evOne = 0;
-let		evTwo = 0;
-let		baseFormId = ref();
-let		evOneId = ref();
-let		evTwoId = ref();
-let 	baseFormImg = ref();
-let 	evOneImg = ref();
-let 	evTwoImg = ref();
-let 	name = ref();
-let 	baseFormName = ref(0);
-let 	evOneName = ref(0);
-let 	evTwoName = ref(0);
+let		baseForm = ref({
+						base: "", 
+						img: "", 
+						id: "", 
+						name: ""
+					});
+let		evOne = ref({
+						base: "", 
+						img: "", 
+						id: "", 
+						name: ""
+					});
+let		evTwo = ref({
+						base: "", 
+						img: "", 
+						id: "", 
+						name: ""
+					});
 let 	evLine = ref(0);
 
 const	getId = (url) =>
@@ -44,97 +50,86 @@ const	getId = (url) =>
 const	setToBlank = () =>
 {
 	console.log("setting to blank")
-	baseForm = 0;
-	baseFormImg.value = "";
-	baseFormId.value = ""
-	evOne = 0;
-	evOneImg.value = "";
-	evOneId.value = "";
-	evTwo = 0;
-	evTwoImg.value = 0;
-	evTwoId.value = 0;
+	baseForm.value.base = 0;
+	baseForm.value.img = "";
+	baseForm.value.id = ""
+	evOne.value.base = 0;
+	evOne.value.img = "";
+	evOne.value.id = "";
+	evTwo.value.base = 0;
+	evTwo.value.img = 0;
+	evTwo.value.id = 0;
 }
 
 const	ftUpdate = async(evolutionUrl) =>
 {
 	console.log("updating");
 	evolutionData.value = await getData.getData(evolutionUrl);
-	baseForm = evolutionData.value.data.chain.species.name;
-	console.log(baseForm);
+	baseForm.value.base = evolutionData.value.data.chain.species.name;
+	console.log(baseForm.value.base);
 	console.log(evolutionData.value.data.chain.evolves_to.length);
 	if (evolutionData.value.data.chain.evolves_to.length !== 0)
 	{
 		evLine.value = 1;
-		evOne = evolutionData.value.data.chain.evolves_to[0].species.name;
+		evOne.value.base = evolutionData.value.data.chain.evolves_to[0].species.name;
 		if (evolutionData.value.data.chain.evolves_to[0].evolves_to.length !== 0)
-			evTwo = evolutionData.value.data.chain.evolves_to[0].evolves_to[0].species.name;
+			evTwo.value.base = evolutionData.value.data.chain.evolves_to[0].evolves_to[0].species.name;
 		else
 		{
-			evTwo = 0;
-			evTwoImg.value = 0;
+			evTwo.value.base = 0;
+			evTwo.value.img = 0;
 		}
 	}
 	else
 	{
-		evOne = 0;
-		evOneImg.value = "";
-		evTwo = 0;
-		evTwoImg.value = "";
+		evOne.value.base = 0;
+		evOne.value.img = "";
+		evTwo.value.base = 0;
+		evTwo.value.img = "";
 		evLine.value = 0;
 	}
-	console.log(baseForm);
-	console.log(evOne);
-	console.log(evTwo);
-	if (baseForm === name.value)
+	console.log(baseForm.value.base);
+	console.log(evOne.value.base);
+	console.log(evTwo.value.base);
+	if (baseForm.value.base === name.value)
 	{
-		baseForm = 0;
-		baseFormImg.value = "";
+		baseForm.value.base = 0;
+		baseForm.value.img = "";
 	}
-	if (evOne === name.value)
+	if (evOne.value.base === name.value)
 	{
-		evOne = 0;
-		evOneImg.value = "";
+		evOne.value.base = 0;
+		evOne.value.img = "";
 	}
-	if (evTwo === name.value)
+	if (evTwo.value.base === name.value)
 	{
-		evTwo = 0;
-		evTwoImg.value = "";
+		evTwo.value.base = 0;
+		evTwo.value.img = "";
 	}
 
 		
-	if (baseForm !== 0)
+	if (baseForm.value.base !== 0)
 	{
-		baseFormId.value = getId(evolutionData.value.data.chain.species.url);
-		baseFormImg.value = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${baseFormId.value}.png`;
-		baseFormName.value = baseForm;
+		baseForm.value.id = getId(evolutionData.value.data.chain.species.url);
+		baseForm.value.img = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${baseForm.value.id}.png`;
+		baseForm.value.name = baseForm.value.base;
 	}
-	if (evOne !== 0)
+	if (evOne.value.base !== 0)
 	{
-		evOneId.value = getId(evolutionData.value.data.chain.evolves_to[0].species.url);
-		evOneImg.value = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evOneId.value}.png`;
-		evOneName.value = evOne;
+		evOne.value.id = getId(evolutionData.value.data.chain.evolves_to[0].species.url);
+		evOne.value.img = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evOne.value.id}.png`;
+		evOne.value.name = evOne.value.base;
 	}
-	if (evTwo !== 0)
+	if (evTwo.value.base !== 0)
 	{
-		evTwoId.value = getId(evolutionData.value.data.chain.evolves_to[0].evolves_to[0].species.url);
-		evTwoImg.value = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evTwoId.value}.png`;
-		evTwoName.value = evTwo;
+		evTwo.value.id = getId(evolutionData.value.data.chain.evolves_to[0].evolves_to[0].species.url);
+		evTwo.value.img = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evTwo.value.id}.png`;
+		evTwo.value.name = evTwo.value.base;
 	}
 }
 
-/*const	ftImageLoader = (img) =>
-{
-	if (img === baseFormName.value)
-		return (baseFormImg.value);
-	else if (img === evOneName.value)
-		return (evOneImg.value);
-	else if (img === evTwoName.value)
-		return (evTwoImg.value)
-}*/
-
 onUpdated(async() =>
 {
-	//setToBlank();
 	name.value = props.data.name;
 	console.log(name.value);
 	speciesData.value = await getData.getData(`https://pokeapi.co/api/v2/pokemon-species/${name.value}`);
@@ -147,7 +142,6 @@ onUpdated(async() =>
 	{
 		setToBlank();
 	}
-	//evolutionUrl = speciesData.value.data.evolution_chain.url;
 })
 
 const	ftCapitalize = (word) =>
@@ -172,17 +166,17 @@ const sendData = async(id) =>
 <template>
 	<h1 v-if="evLine">Evolution Line</h1>
 	<section id="evolution-line">
-		<section v-if="baseFormImg" @click="sendData(baseFormId)" class="evolution">
-			<img :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${baseFormId}.png`" class="poke-img"/>
-			<h3>{{ ftCapitalize(baseFormName) }}</h3>
+		<section v-if="baseForm.img" @click="sendData(baseForm.id)" class="evolution">
+			<img :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${baseForm.id}.png`" class="poke-img"/>
+			<h3>{{ ftCapitalize(baseForm.name) }}</h3>
 		</section>
-		<section v-if="evOneImg" @click="sendData(evOneId)" class="evolution">
-			<img :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evOneId}.png`" class="poke-img"/>
-			<h3>{{ ftCapitalize(evOneName) }}</h3>
+		<section v-if="evOne.img" @click="sendData(evOne.id)" class="evolution">
+			<img :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evOne.id}.png`" class="poke-img"/>
+			<h3>{{ ftCapitalize(evOne.name) }}</h3>
 		</section>
-		<section v-if="evTwoImg" @click="sendData(evTwoId)" class="evolution">
-			<img :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evTwoId}.png`" class="poke-img"/>
-			<h3>{{ ftCapitalize(evTwoName) }}</h3>
+		<section v-if="evTwo.img" @click="sendData(evTwo.id)" class="evolution">
+			<img :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evTwo.id}.png`" class="poke-img"/>
+			<h3>{{ ftCapitalize(evTwo.name) }}</h3>
 		</section>
 	</section>
 </template>
