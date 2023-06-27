@@ -18,6 +18,7 @@ const props = defineProps({
   }
 })
 
+let cardHover = ref()
 // let pokemonImg = computed(() => {
 //   if (props.pokemon.sprites.value !== null) {
 //     return props.pokemon.sprites.other['official-artwork'].front_default;
@@ -46,13 +47,13 @@ let pokemonImg = computed(() => {
 //     return null
 //   }
 // })
-let pokemonAbilities = computed(() => {
-  if (props.pokemon.abilities && props.pokemon.abilities.length > 0) {
-    return props.pokemon.abilities[0].ability.name
-  } else {
-    return null
-  }
-})
+// let pokemonAbilities = computed(() => {
+//   if (props.pokemon.abilities && props.pokemon.abilities.length > 0) {
+//     return props.pokemon.abilities[0].ability.name
+//   } else {
+//     return null
+//   }
+// })
 
 let pokemonType = computed(() => {
   if (props.pokemon.types && props.pokemon.types.length > 0) {
@@ -64,7 +65,7 @@ let pokemonType = computed(() => {
 
 let pokemonHeight = computed(() => {
   if (props.pokemon.height) {
-    return props.pokemon.height
+    return props.pokemon.height / 10
   } else {
     return null
   }
@@ -72,13 +73,22 @@ let pokemonHeight = computed(() => {
 
 let pokemonWeight = computed(() => {
   if (props.pokemon.weight && props.pokemon.weight > 0) {
-    return props.pokemon.weight
+    return props.pokemon.weight / 10
   } else {
     return null
   }
+
+  
 })
 
-let cardHover = ref()
+// function convertData() {
+//   pokemonWeight.value /= 10
+//   return pokemonWeight
+// }
+
+// convertData()
+
+
 // onUpdated(() => {
 //   pokemonType.value = props.pokemon.types[0].type['name'];
 //   return pokemonType.value
@@ -110,9 +120,9 @@ let cardHover = ref()
     </div>
 
     <section v-if="cardHover" id="abilitySection" :class="pokemonType">
-      <p id="pokeAbility">Ability: {{ pokemonAbilities }}</p>
-      <p id="pokeHeight">Heigth: {{ pokemonHeight }} feet</p>
-      <p id="pokeWeigth">Weight: {{ pokemonWeight }} pounds</p>
+      <p class="pokeScnd" v-for="(eachAbility, i) in pokemon.abilities" :key="i">Ability:  {{ eachAbility.ability.name }}</p>
+      <p class="pokeScnd">Heigth:  {{ pokemonHeight }} meters</p>
+      <p class="pokeScnd">Weight:  {{ pokemonWeight }} Kg</p>
     </section>
   </div>
 </template>
@@ -177,9 +187,16 @@ div h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-transform: capitalize;
   border: 2px solid #fff;
   box-shadow: 10px 10px 12px 10px rgba(0, 0, 0, 0.3);
+}
+.pokeScnd {
+  border: 2px solid #fff;
+  font-size: 24px;
+  font-family: 'Comic Neue', cursive;
+  font-weight: bold;
 }
 
 p {
@@ -212,19 +229,21 @@ p {
 
 .electric {
   background: #f8d030;
-  color: #000aff;
+  color: #000000;
   border: 2px solid #fff;
 }
 
 .steel {
   background: #a8a8c0;
-  color: #0400ff;
+  /* color: #0400ff; */
+  color: #fff;
   border: 2px solid #fff;
 }
 
 .bug {
   background: #a8b820;
-  color: #0400ff;
+  /* color: #0400ff; */
+  color: #fff;
   border: 2px solid #fff;
 }
 
@@ -242,13 +261,15 @@ p {
 
 .fairy {
   background: #e79fe7;
-  color: #0f00ff;
+  /* color: #0f00ff; */
+  color: #fff;
   border: 2px solid #fff;
 }
 
 .ice {
   background: #58c8e0;
-  color: #0400ff;
+  /* color: #0400ff; */
+  color: #303030;
   border: 2px solid #fff;
 }
 
@@ -260,25 +281,29 @@ p {
 
 .normal {
   background: #a8a090;
-  color: #0400ff;
+  /* color: #0400ff; */
+  color: #fff;
   border: 2px solid #fff;
 }
 
 .grass {
   background: #78c850;
-  color: #0102ff;
+  /* color: #0102ff; */
+  color: #fff;
   border: 2px solid #fff;
 }
 
 .psychic {
   background: #f870a0;
-  color: #1200ff;
+  /* color: #1200ff; */
+  color: #fff;
   border: 2px solid #fff;
 }
 
 .rock {
   background: #b8a058;
-  color: #0400ff;
+  /* color: #0400ff; */
+  color: #fff;
   border: 2px solid #fff;
 }
 
@@ -290,7 +315,8 @@ p {
 
 .ground {
   background: #e9d6a4;
-  color: #0d00ff;
+  /* color: #0d00ff; */
+  color: #7a5848;
   border: 2px solid #fff;
 }
 
@@ -302,7 +328,8 @@ p {
 
 .flying {
   background: #98a8f0;
-  color: #0115ff;
+  /* color: #0115ff; */
+  color: #fff;
   border: 2px solid #fff;
 }
 </style>
