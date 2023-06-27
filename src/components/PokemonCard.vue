@@ -137,6 +137,7 @@ div h2 {
 }
 
 #abilitySection {
+  background-image: url('./../assets/pokeball.png');
   width: 20vw;
   height: 50vh;
   border-radius: 5px;
