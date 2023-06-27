@@ -51,20 +51,19 @@
 </script>
 
 <template>
-
     <section id="searchBar">
-
-        <h3>Look up your Pokemon name or number</h3>
-        <form>
-            <input type="text" placeholder="Find a Pokemon!" autocomplete="on" size="40" @input="ChangeButton()">
-            <button type="button" @click="Search()">Find Random!</button>
-            <button type="reset">Delete</button>
-        </form>
-        <div id="divNotFound" class="invisible">
-            Couldn't find {{ searchedValue }}
-        </div>
+        <section id="searchForm">
+            <h3>Look up your Pokemon name or number</h3>
+            <form>
+                <input type="text" placeholder="Find a Pokemon!" autocomplete="on" size="40" @input="ChangeButton()">
+                <button type="button" @click="Search()">Find Random!</button>
+                <button type="reset">Delete</button>
+            </form>
+        </section>
     </section>
-
+    <div id="divNotFound" class="invisible">
+        Couldn't find {{ searchedValue }}
+    </div>
 </template>
 
 <style scoped>
@@ -73,11 +72,14 @@
 
 #searchBar{border: 1px solid black;
     margin: 0 auto;
-    height: 4vh;
+    height: fit-content;
     width: 80vw;
     font-family: 'Comic Neue', cursive;
     border-radius: 24px;
     background-color: #3951ED;
+}
+
+#searchForm {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -86,11 +88,11 @@
 h3{
     color:white;
     font-weight: bold;
-    font-size: x-large
+    font-size: 1vw;
 }
 
 #divNotFound{
-    color:red;
+    color:#fffc00;
     text-align: center;
 }
 
