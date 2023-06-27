@@ -72,17 +72,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
 
 #searchBar{border: 1px solid black;
-    margin:0 auto;
+    margin: 0 auto;
+    height: 4vh;
     width: 80vw;
     font-family: 'Comic Neue', cursive;
     border-radius: 24px;
     background-color: #3951ED;
+    display: flex;
+    align-items: center;
 }
 
 h3{
     color:white;
     font-weight: bold;
-    margin-left: 2vw;
     font-size: x-large;
     text-align: center;
 }
