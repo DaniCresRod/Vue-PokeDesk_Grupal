@@ -19,13 +19,7 @@ const props = defineProps({
 })
 
 let cardHover = ref()
-// let pokemonImg = computed(() => {
-//   if (props.pokemon.sprites.value !== null) {
-//     return props.pokemon.sprites.other['official-artwork'].front_default;
-//   } else {
-//     return null
-//   }
-// })
+
 
 let pokemonImg = computed(() => {
   if (
@@ -40,20 +34,6 @@ let pokemonImg = computed(() => {
   }
 })
 
-// let pokemonType = computed(() => {
-//   if (props.pokemon.types !== null){
-//     return props.pokemon.types[0].type['name']
-//   } else {
-//     return null
-//   }
-// })
-// let pokemonAbilities = computed(() => {
-//   if (props.pokemon.abilities && props.pokemon.abilities.length > 0) {
-//     return props.pokemon.abilities[0].ability.name
-//   } else {
-//     return null
-//   }
-// })
 
 let pokemonType = computed(() => {
   if (props.pokemon.types && props.pokemon.types.length > 0) {
@@ -80,28 +60,10 @@ let pokemonWeight = computed(() => {
 
   
 })
-
-// function convertData() {
-//   pokemonWeight.value /= 10
-//   return pokemonWeight
-// }
-
-// convertData()
-
-
-// onUpdated(() => {
-//   pokemonType.value = props.pokemon.types[0].type['name'];
-//   return pokemonType.value
-// })
-// onUpdated(() => {
-//   pokemonImg.value = props.pokemon.sprites.front_default
-//   console.log(pokemonImg.value)
-// })
 </script>
 
 <template v-if="pokemon">
   <div class="sectionContainer">
-    <!-- <div :class="pokemon.types[0].type['name']"> -->
     <div
       id="mainCardDiv"
       :class="pokemonType"
@@ -115,8 +77,6 @@ let pokemonWeight = computed(() => {
           {{ eachType.type.name }}
         </p>
       </section>
-      <!-- <p v-for="(eachAbility, i) in pokemon.abilities" :key="i">{{ pokemonAbilities }}</p> -->
-      <!-- <p v-if="pokemon">{{ pokemon.types[1].type.name }}</p> -->
     </div>
 
     <section v-if="cardHover" id="abilitySection" :class="pokemonType">
@@ -136,8 +96,6 @@ let pokemonWeight = computed(() => {
 }
 
 div #mainCardDiv {
-  /* width: 300px; */
-  /* height: 450px; */
   width: 20vw;
   height: 50vh;
   border-radius: 5px;
@@ -175,9 +133,7 @@ div h2 {
   justify-content: center;
   align-items: center;
   gap: 15px;
-  /* padding-bottom: 30px; */
   border-radius: 10px;
-  /* margin-bottom: 10px; */
 }
 
 #abilitySection {
@@ -235,14 +191,12 @@ p {
 
 .steel {
   background: #a8a8c0;
-  /* color: #0400ff; */
   color: #fff;
   border: 2px solid #fff;
 }
 
 .bug {
   background: #a8b820;
-  /* color: #0400ff; */
   color: #fff;
   border: 2px solid #fff;
 }
@@ -268,7 +222,6 @@ p {
 
 .ice {
   background: #58c8e0;
-  /* color: #0400ff; */
   color: #303030;
   border: 2px solid #fff;
 }
@@ -281,28 +234,24 @@ p {
 
 .normal {
   background: #a8a090;
-  /* color: #0400ff; */
   color: #fff;
   border: 2px solid #fff;
 }
 
 .grass {
   background: #78c850;
-  /* color: #0102ff; */
   color: #fff;
   border: 2px solid #fff;
 }
 
 .psychic {
   background: #f870a0;
-  /* color: #1200ff; */
   color: #fff;
   border: 2px solid #fff;
 }
 
 .rock {
   background: #b8a058;
-  /* color: #0400ff; */
   color: #fff;
   border: 2px solid #fff;
 }
@@ -315,7 +264,6 @@ p {
 
 .ground {
   background: #e9d6a4;
-  /* color: #0d00ff; */
   color: #7a5848;
   border: 2px solid #fff;
 }
@@ -328,7 +276,6 @@ p {
 
 .flying {
   background: #98a8f0;
-  /* color: #0115ff; */
   color: #fff;
   border: 2px solid #fff;
 }
