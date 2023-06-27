@@ -72,19 +72,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
 
 #searchBar{border: 1px solid black;
-    margin:0 auto;
+    margin: 0 auto;
+    height: 4vh;
     width: 80vw;
     font-family: 'Comic Neue', cursive;
     border-radius: 24px;
     background-color: #3951ED;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 h3{
     color:white;
     font-weight: bold;
-    margin-left: 2vw;
-    font-size: x-large;
-    text-align: center;
+    font-size: x-large
 }
 
 #divNotFound{
@@ -98,7 +100,6 @@ h3{
 
 form{
     width: fit-content;
-    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -108,7 +109,6 @@ form{
 }
 
 input{
-    margin: auto 4vw;
     border-radius: 5px;
     padding: 1vh 1vw;
     font-family: 'Comic Neue', cursive; 

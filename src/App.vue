@@ -64,7 +64,7 @@ const miObject = computed(() => {
   }
   
   header {
-    height: 18vh;
+    height: 17vh;
     width: 100vw;
     display: flex;
     justify-content: center;
@@ -75,7 +75,7 @@ const miObject = computed(() => {
   }
 
   section {
-    padding: 2% 0; 
+    padding: 1% 0; 
   }
 
   #randomView {
@@ -94,7 +94,7 @@ const miObject = computed(() => {
         margin: auto;
         border-radius: 24px;
         display: flex;
-		flex-direction: column;
+		    flex-direction: column;
         align-items: center;
   }
 </style>

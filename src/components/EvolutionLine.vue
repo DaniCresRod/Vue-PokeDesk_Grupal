@@ -14,25 +14,24 @@ const props = defineProps(
 const emit = defineEmits(['response']);
 
 const	newData = new GetData();
-let 	givenName = ref();
+let 	given = ref({
+						id: "",
+					});
 let 	speciesData = ref();
 let 	evolutionData = ref();
 let		baseForm = ref({
-						base: "", 
-						img: "", 
 						id: "", 
+						img: "", 
 						name: ""
 					});
 let		evOne = ref({
-						base: "", 
-						img: "", 
 						id: "", 
+						img: "", 
 						name: ""
 					});
 let		evTwo = ref({
-						base: "", 
-						img: "", 
 						id: "", 
+						img: "", 
 						name: ""
 					});
 let 	evLine = ref(0);
@@ -49,81 +48,75 @@ const	getId = (url) =>
 
 const	setToBlank = () =>
 {
-	baseForm.value.base = 0;
 	baseForm.value.img = "";
-	baseForm.value.id = ""
-	evOne.value.base = 0;
+	baseForm.value.id = 0
 	evOne.value.img = "";
-	evOne.value.id = "";
-	evTwo.value.base = 0;
-	evTwo.value.img = 0;
+	evOne.value.id = 0;
+	evTwo.value.img = "";
 	evTwo.value.id = 0;
 }
 
 const	ftUpdate = async(evolutionUrl) =>
 {
 	evolutionData.value = await newData.getData(evolutionUrl);
-	baseForm.value.base = evolutionData.value.data.chain.species.name;
+	baseForm.value.id = Number(getId(evolutionData.value.data.chain.species.url));
 	if (evolutionData.value.data.chain.evolves_to.length !== 0)
 	{
 		evLine.value = 1;
-		evOne.value.base = evolutionData.value.data.chain.evolves_to[0].species.name;
+		evOne.value.id = Number(getId(evolutionData.value.data.chain.evolves_to[0].species.url));
 		if (evolutionData.value.data.chain.evolves_to[0].evolves_to.length !== 0)
-			evTwo.value.base = evolutionData.value.data.chain.evolves_to[0].evolves_to[0].species.name;
+			evTwo.value.id = Number(getId(evolutionData.value.data.chain.evolves_to[0].evolves_to[0].species.url));
 		else
 		{
-			evTwo.value.base = 0;
+			evTwo.value.id = 0;
 			evTwo.value.img = 0;
 		}
 	}
 	else
 	{
-		evOne.value.base = 0;
+		evOne.value.id = 0;
 		evOne.value.img = "";
-		evTwo.value.base = 0;
+		evTwo.value.id = 0;
 		evTwo.value.img = "";
 		evLine.value = 0;
 	}
-	if (baseForm.value.base === givenName.value)
+	if (baseForm.value.id === given.value.id)
 	{
-		baseForm.value.base = 0;
+		baseForm.value.id = 0;
 		baseForm.value.img = "";
 	}
-	if (evOne.value.base === givenName.value)
+	if (evOne.value.id === given.value.id)
 	{
-		evOne.value.base = 0;
+		evOne.value.id = 0;
 		evOne.value.img = "";
 	}
-	if (evTwo.value.base === givenName.value)
+	if (evTwo.value.id === given.value.id)
 	{
-		evTwo.value.base = 0;
+		evTwo.value.id = 0;
 		evTwo.value.img = "";
 	}
 		
-	if (baseForm.value.base !== 0)
+	if (baseForm.value.id !== 0)
 	{
-		baseForm.value.id = getId(evolutionData.value.data.chain.species.url);
 		baseForm.value.img = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${baseForm.value.id}.png`;
-		baseForm.value.name = baseForm.value.base;
+		baseForm.value.name = evolutionData.value.data.chain.species.name;
 	}
-	if (evOne.value.base !== 0)
+	if (evOne.value.id !== 0)
 	{
-		evOne.value.id = getId(evolutionData.value.data.chain.evolves_to[0].species.url);
 		evOne.value.img = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evOne.value.id}.png`;
-		evOne.value.name = evOne.value.base;
+		evOne.value.name = evolutionData.value.data.chain.evolves_to[0].species.name;
 	}
-	if (evTwo.value.base !== 0)
+	if (evTwo.value.id !== 0)
 	{
-		evTwo.value.id = getId(evolutionData.value.data.chain.evolves_to[0].evolves_to[0].species.url);
 		evTwo.value.img = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evTwo.value.id}.png`;
-		evTwo.value.name = evTwo.value.base;
+		evTwo.value.name = evolutionData.value.data.chain.evolves_to[0].evolves_to[0].species.name;
 	}
 }
 
 onUpdated(async() =>
 {
-	givenName.value = props.data.name;
-	speciesData.value = await newData.getData(`https://pokeapi.co/api/v2/pokemon-species/${givenName.value}`);
+	given.value.id = props.data.id;
+	speciesData.value = await newData.getData(`https://pokeapi.co/api/v2/pokemon-species/${given.value.id}`);
 	if (typeof speciesData.value !== "string")
 	{
 		ftUpdate(speciesData.value.data.evolution_chain.url);
