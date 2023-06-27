@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 
 const props = defineProps({
   cardClass: {
@@ -9,7 +9,7 @@ const props = defineProps({
     type: Object,
     // eslint-disable-next-line vue/require-valid-default-prop
     default: {
-      id: "",
+      id: '',
       name: 'No pokemon Selected',
       sprites: {
         front_default: ''
@@ -54,7 +54,6 @@ let pokemonAbilities = computed(() => {
   }
 })
 
-
 let pokemonType = computed(() => {
   if (props.pokemon.types && props.pokemon.types.length > 0) {
     return props.pokemon.types[0].type['name']
@@ -63,6 +62,23 @@ let pokemonType = computed(() => {
   }
 })
 
+let pokemonHeight = computed(() => {
+  if (props.pokemon.height) {
+    return props.pokemon.height
+  } else {
+    return null
+  }
+})
+
+let pokemonWeight = computed(() => {
+  if (props.pokemon.weight && props.pokemon.weight > 0) {
+    return props.pokemon.weight
+  } else {
+    return null
+  }
+})
+
+let cardHover = ref()
 // onUpdated(() => {
 //   pokemonType.value = props.pokemon.types[0].type['name'];
 //   return pokemonType.value
@@ -74,29 +90,46 @@ let pokemonType = computed(() => {
 </script>
 
 <template v-if="pokemon">
-  <!-- <div :class="pokemon.types[0].type['name']"> -->
-  <div :class="pokemonType">
-    <h2 class="idName">{{ pokemon.id }}  {{ pokemon.name }}</h2>
-    <!-- <h2>{{ pokemon.name }}</h2> -->
-    <img v-if="pokemonImg" :src="pokemonImg" />
-    <!-- pokemon.sprites.other.official-artwork.front-default -->
-    <section>
-      <p v-for="(eachType, index) in pokemon.types" :class="eachType.type.name" :key="index">{{ eachType.type.name }}</p>
-    </section>
+  <div class="sectionContainer">
+    <!-- <div :class="pokemon.types[0].type['name']"> -->
+    <div
+      id="mainCardDiv"
+      :class="pokemonType"
+      @mouseover="cardHover = true"
+      @mouseout="cardHover = false"
+    >
+      <h2 class="idName">{{ pokemon.id }} {{ pokemon.name }}</h2>
+      <img v-if="pokemonImg" :src="pokemonImg" />
+      <section class="typeSection">
+        <p v-for="(eachType, index) in pokemon.types" :class="eachType.type.name" :key="index">
+          {{ eachType.type.name }}
+        </p>
+      </section>
       <!-- <p v-for="(eachAbility, i) in pokemon.abilities" :key="i">{{ pokemonAbilities }}</p> -->
-      <p id="pokeAbility">Ability:  {{ pokemonAbilities }}</p>
-    <!-- <p v-if="pokemon">{{ pokemon.types[1].type.name }}</p> -->
+      <!-- <p v-if="pokemon">{{ pokemon.types[1].type.name }}</p> -->
+    </div>
+
+    <section v-if="cardHover" id="abilitySection" :class="pokemonType">
+      <p id="pokeAbility">Ability: {{ pokemonAbilities }}</p>
+      <p id="pokeHeight">Heigth: {{ pokemonHeight }} feet</p>
+      <p id="pokeWeigth">Weight: {{ pokemonWeight }} pounds</p>
+    </section>
   </div>
 </template>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
-div {
-  background: rgb(41, 41, 41);
+
+.sectionContainer {
+  display: flex;
+  gap: 10px;
+}
+
+div #mainCardDiv {
   /* width: 300px; */
   /* height: 450px; */
   width: 20vw;
-  height: 46vh;
+  height: 50vh;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -127,7 +160,7 @@ div h2 {
   margin: auto;
 }
 
-section {
+.typeSection {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -137,12 +170,23 @@ section {
   /* margin-bottom: 10px; */
 }
 
+#abilitySection {
+  width: 20vw;
+  height: 50vh;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-transform: capitalize;
+  border: 2px solid #fff;
+  box-shadow: 10px 10px 12px 10px rgba(0, 0, 0, 0.3);
+}
+
 p {
   display: inline-block;
   padding: 5px 10px;
   border-radius: 5px;
 }
-
 
 .idName {
   display: flex;
