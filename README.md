@@ -28,18 +28,18 @@ We've devoloped one of the most popular online projects about API's use: a Pokem
     Week 2:
         - Component assembling
         - Fix & hotfix
-        - Extra: Cathegory filter
+        - Extra: Category filter
 
 # Team Crew
 
 - Carmen Borja (carmenb2020)
-- Luis Álvarez (luisanlvarez246)
+- Luis Álvarez (luisalvarez246)
 - Leolo Flórez (LeoloFlrz)
 - Victor Tejedor (victorteje)
 - Daniel Crespo (DaniCresRod)
 
 
-# .
+# 
 
 This template should help get you started developing with Vue 3 in Vite.
 
@@ -55,6 +55,12 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ```sh
 npm install
+```
+
+#### Axios setup
+
+```sh
+npm install axios
 ```
 
 ### Compile and Hot-Reload for Development
