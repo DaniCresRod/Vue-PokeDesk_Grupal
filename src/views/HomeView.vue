@@ -1,9 +1,13 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+// import TheWelcome from '../components/TheWelcome.vue'
+//import PokemonCard from '../components/PokemonCard.vue';
 </script>
 
 <template>
   <main>
-    <TheWelcome />
   </main>
 </template>
+
+<style scoped>
+ 
+</style>
