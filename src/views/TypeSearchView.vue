@@ -12,12 +12,8 @@ const myArray=ref([]);
 
 onBeforeMount(() => {
 
-  //Looks for all the types
   typesOfPokemon.value = TypeSearch("");
 
-  //(typesOfPokemon.value).then(x=>console.log(x));
-
-  //Once fetched, creates the elements in the DOM
   (typesOfPokemon.value).then(x => {
       let mainDiv = document.getElementById("AdvancedSearchTopics");
 
@@ -26,19 +22,15 @@ onBeforeMount(() => {
       for (var i = 0; i < x.length-2; i++) {
         let eachLi=mainDiv_innerUl.appendChild(document.createElement("li"));
         eachLi.textContent = x[i].name;
-        //eachLi.setAttribute("tag", x[i].url);
         eachLi.classList.add(x[i].name);
         
-        //Adds eventListener to access each Pokemon info 
         document.querySelector("#AdvancedSearchTopics li:nth-of-type("+(i+1)+")").addEventListener("click", (event)=>{
           document.getElementById("ShowAdvancedSearch").classList.add("invisible");
           document.getElementById("SearchingSign").classList.remove("invisible");
 
-          //Asks for the type (is written inside the clicked element)
           let response=TypeSearch(event.target.textContent);
           myTypeOfPokemon.value=event.target.textContent;
 
-          //Turns it into an array to use it in the v-for
           response.then((x)=>{
             document.getElementById("ShowAdvancedSearch").classList.remove("invisible");
             document.getElementById("SearchingSign").classList.add("invisible");
@@ -46,9 +38,7 @@ onBeforeMount(() => {
 
             for(let i=0; i<x.length ; i++){
                 
-              //The id is yet in the url. We don't want the special ones over id 1010
               if((x[i].pokemon.url).split('/')[6]<=1010){
-                  //console.log((x[i].pokemon.url).split('/')[6]);
                   (myArray.value).push(x[i]);
               }
                 
@@ -61,11 +51,9 @@ onBeforeMount(() => {
 })
 
 onMounted(() => {
-    //Added a click event to hide/unhide searchdetail
     document.getElementById("ArrowOpenMoreOptions").addEventListener("click", ()=>{
     document.getElementById("AdvancedSearchTopics").classList.toggle("invisible");
    
-    //Added a rotation on the Open-details arrow
     if(document.getElementById("ArrowOpenMoreOptions").style.rotate===180+"deg"){
         document.getElementById("ArrowOpenMoreOptions").style.rotate=0+"deg";
         document.getElementById("ShowAdvancedSearch").classList.add("invisible");
@@ -77,7 +65,6 @@ onMounted(() => {
     });
 })
 
-//Gives the information to the father
 let emit=defineEmits(['sendDatos']);
 function RetrieveFromGrandson(data){
      emit('sendDatos', data);
@@ -99,7 +86,6 @@ function RetrieveFromGrandson(data){
     <div id="ShowAdvancedSearch" class="invisible" v-if="myArray">
         <hr/>
         <ul>
-            <!--<li v-for="eachPokemon in myArray" :key="eachPokemon" :class="myTypeOfPokemon">{{eachPokemon.pokemon.name}}</li>-->
             <SelectedTypePokemonComponent v-for="eachPokemon in myArray" :key="eachPokemon" :class="myTypeOfPokemon" :pokemon="eachPokemon.pokemon" @send-datos="RetrieveFromGrandson"></SelectedTypePokemonComponent>
         </ul>
         
@@ -160,7 +146,6 @@ h3{
 }
 
 #typeSearchBar :deep(li){
-    /*background: #ECC139 ;*/
     padding: 0.5vh 4vw;
     border-radius: 5px;
     text-transform: capitalize;

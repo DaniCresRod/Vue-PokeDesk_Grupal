@@ -16,18 +16,11 @@ function Search(){
     data.value=pokemonSearch((props.pokemon.url).split('/')[6]);    
 
     (data.value).then( x=> emit('sendDatos', x));
-
-    //(data.value).then(x=>console.log(x));    
-    //return data.value;
 }
 
 onUpdated(()=>{
     
-    //console.log(data.value);
 })
-
-
-//
 
 </script>
 

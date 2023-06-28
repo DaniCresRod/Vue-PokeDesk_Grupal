@@ -99,7 +99,6 @@
   padding:3rem;
   border: 5px solid white;
   border-radius: 50%;
-  /* margin-top: calc(-48px - 5px); */
   background-color: white;
 }
 </style>
