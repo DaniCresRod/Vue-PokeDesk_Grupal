@@ -1,5 +1,4 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
 import RandomView from './views/RandomView.vue';
 import SearchView from './views/SearchView.vue';
 import PokemonCard from './components/PokemonCard.vue';
@@ -34,8 +33,7 @@ const myObject = computed(() => {
 <template>
   <body>
     <header>
-      <RouterLink to="/"><img id="logo" src="./assets/logoPokemon.png" alt="Logo"></RouterLink>
-      <RouterView />
+      <img id="logo" src="./assets/logoPokemon.png" alt="Logo">
     </header>
     <main>
       <section id="randomView">
